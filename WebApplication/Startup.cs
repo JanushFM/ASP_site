@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Interfaces.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
+using Persistence.Repositories;
 
 namespace WebApplication
 {
@@ -27,7 +29,10 @@ namespace WebApplication
         {
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext))));
+                options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext)),
+                    b => b.MigrationsAssembly("WebApplication")));
+            
+            services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

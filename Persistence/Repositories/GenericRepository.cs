@@ -11,7 +11,7 @@ namespace Persistence.Repositories
     {
         private readonly ApplicationContext _context;
 
-        public GenericRepository(ApplicationContext context) => this._context = context;
+        public GenericRepository(ApplicationContext context) => _context = context;
 
 
         public async Task<T> GetById(long id)
