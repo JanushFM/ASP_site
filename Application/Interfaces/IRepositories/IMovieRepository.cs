@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Application.Interfaces.Repositories
+namespace Application.Interfaces.IRepositories
 {
     public interface IMovieRepository : IGenericRepository<Movie> { }
 }

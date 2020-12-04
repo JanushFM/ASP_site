@@ -1,7 +1,10 @@
-﻿namespace Domain.Maps
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Domain.Maps
 {
-    public class IEntityBuilder
+    public interface IEntityBuilder<T> where T : BaseEntity
     {
-        
+        void BuildEntity(EntityTypeBuilder<T> builder);
     }
 }
