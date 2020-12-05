@@ -9,8 +9,8 @@ namespace Domain.Entities
         [StringLength(120, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
-
-        public int DescriptionId { get; set; }
+        
+        public Description Description { get; set; }
         
         public string ImageName { get; set; }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
+using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,8 @@ namespace WebApplication
                     b => b.MigrationsAssembly("WebApplication")));
             
             services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
+            services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
+            services.AddScoped(typeof(IDescriptionRepository), typeof(DescriptionRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
