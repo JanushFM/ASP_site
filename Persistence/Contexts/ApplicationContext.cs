@@ -10,7 +10,8 @@ namespace Persistence.Contexts
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
         
         protected readonly string databaseName = "shop_db";
-
+        public DbSet<Movie> Movie { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
