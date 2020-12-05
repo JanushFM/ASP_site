@@ -1,28 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Application.Interfaces.IRepositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
-using Persistence.Contexts;
 
 namespace WebApplication.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly ApplicationContext _context;
-
-        public MoviesController(ApplicationContext context)
+        private readonly IMovieRepository _movieRepository;
+        public MoviesController(IMovieRepository movieRepository)
         {
-            _context = context;
+            _movieRepository = movieRepository;
         }
 
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _movieRepository.GetAll());
         }
 
         // GET: Movies/Details/5
@@ -33,8 +28,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _movieRepository.GetById(id.Value);
             if (movie == null)
             {
                 return NotFound();
@@ -58,8 +52,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
-                await _context.SaveChangesAsync();
+                await _movieRepository.Add(movie);
                 return RedirectToAction(nameof(Index));
             }
             return View(movie);
@@ -73,7 +66,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _movieRepository.GetById(id.Value);
             if (movie == null)
             {
                 return NotFound();
@@ -97,18 +90,13 @@ namespace WebApplication.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
-                    await _context.SaveChangesAsync();
+                    await _movieRepository.Update(movie);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!await _movieRepository.Exist(id))
                     {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -124,8 +112,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _movieRepository.GetById(id.Value);
             if (movie == null)
             {
                 return NotFound();
@@ -139,15 +126,10 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
-            await _context.SaveChangesAsync();
+            var movie = await _movieRepository.GetById(id);
+            await _movieRepository.Delete(movie);
             return RedirectToAction(nameof(Index));
         }
-
-        private bool MovieExists(int id)
-        {
-            return _context.Movie.Any(e => e.Id == id);
-        }
+        
     }
 }

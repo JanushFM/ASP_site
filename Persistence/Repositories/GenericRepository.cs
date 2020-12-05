@@ -14,7 +14,7 @@ namespace Persistence.Repositories
         public GenericRepository(ApplicationContext context) => _context = context;
 
 
-        public async Task<T> GetById(long id)
+        public async Task<T> GetById(int id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
@@ -40,10 +40,14 @@ namespace Persistence.Repositories
 
         public async Task<T> Delete(T entity)
         {
-            _context.Remove(entity); // если не сработает, то попробуй Context.Set<TEntity>().Remove(entity);
+            _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
-    
+
+        public async Task<bool> Exist(int id)
+        {
+            return await GetById(id) != null;
+        }
     }
 }
