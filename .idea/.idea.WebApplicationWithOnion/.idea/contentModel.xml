@@ -28,10 +28,14 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain.csproj" t="IncludeRecursive" />
         <e p="Entities" t="Include">
+          <e p="Artist.cs" t="Include" />
           <e p="BaseEntity.cs" t="Include" />
+          <e p="Description.cs" t="Include" />
           <e p="Movie.cs" t="Include" />
         </e>
         <e p="Maps" t="Include">
+          <e p="ArtistMap.cs" t="Include" />
+          <e p="DescriptionMap.cs" t="Include" />
           <e p="IEntityBuilder.cs" t="Include" />
           <e p="MovieMap.cs" t="Include" />
         </e>

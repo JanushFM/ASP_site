@@ -9,13 +9,12 @@ namespace Persistence.Contexts
         public ApplicationContext() {}
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
         
-        protected readonly string databaseName = "shop_db";
-        public DbSet<Movie> Movie { get; set; }
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             new MovieMap(modelBuilder.Entity<Movie>());
+            new DescriptionMap(modelBuilder.Entity<Description>());
+            new ArtistMap(modelBuilder.Entity<Artist>());
         }
         
     }
