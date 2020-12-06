@@ -1,0 +1,23 @@
+﻿@model Domain.Entities.Artist
+
+<div class="container bootstrap snippet" style="padding-top: 5%; font-family: 'Times New Roman',serif">
+    <div class="profile card">
+        <div class="profile-body">
+            <div class="profile-bio">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img class="img-thumbnail md-margin-bottom-10"
+                             src="~/images/@Html.DisplayFor(model => model.ImageName)"
+                             alt="">
+                    </div>
+                    <div class="col-md-7">
+                        <h2>@Html.DisplayFor(model => model.Name)</h2>
+                        <em>"@Html.DisplayFor(model => model.Quote)"</em>
+                        <hr>
+                        <h5>@Html.DisplayFor(model => model.Description.BigDescription)</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

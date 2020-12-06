@@ -20,5 +20,11 @@ namespace Persistence.Repositories
         {
             return await _context.Set<Artist>().Include(nameof(Description)).ToListAsync();
         }
+
+        public override async Task<Artist> GetById(int id)
+        {
+            return await _context.Set<Artist>().Include(nameof(Description))
+                .FirstOrDefaultAsync(artist => artist.Id == id);
+        }
     }
 }

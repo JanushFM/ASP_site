@@ -14,7 +14,7 @@ namespace Persistence.Repositories
         public GenericRepository(ApplicationContext context) => _context = context;
 
 
-        public async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
             return await _context.Set<T>().FindAsync(id);
         }

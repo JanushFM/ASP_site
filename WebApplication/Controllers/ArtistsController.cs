@@ -17,5 +17,21 @@ namespace WebApplication.Controllers
         {
             return View(await _artistRepository.GetAll());
         }
+
+        public async Task<IActionResult> Biography(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var artist = await _artistRepository.GetById(id.Value);
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            return View(artist);
+        }
     }
 }
