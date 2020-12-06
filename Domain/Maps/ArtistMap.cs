@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Domain.Maps
 {
-    public class ArtistMap
+    public class ArtistMap : IEntityBuilder<Artist>
     {
         public ArtistMap(EntityTypeBuilder<Artist> builder) => BuildEntity(builder);
 
@@ -21,7 +21,8 @@ namespace Domain.Maps
                     Id = 1,
                     Name = "Vincent van Gogh",
                     ImageName = "Vincent_van_Gogh__portrait.jpg",
-                    Quote = "quote"
+                    Quote = "quote",
+                    DescriptionId = 1
                 },
                 new Artist
                 {
@@ -30,7 +31,9 @@ namespace Domain.Maps
                     ImageName = "Leonardo_da_Vinci_portrait_Ti9m3nK.jpg",
                     Quote =
                         "Painting is poetry that is seen rather than felt," +
-                        " and poetry is painting that is felt rather than seen"
+                        " and poetry is painting that is felt rather than seen",
+                    DescriptionId = 2
+                        
                 }
             );
         }

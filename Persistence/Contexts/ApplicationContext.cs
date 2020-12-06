@@ -20,12 +20,17 @@ namespace Persistence.Contexts
             new MovieMap(modelBuilder.Entity<Movie>());
             new DescriptionMap(modelBuilder.Entity<Description>());
             new ArtistMap(modelBuilder.Entity<Artist>());
+            new PaintingMap(modelBuilder.Entity<Painting>());
             
             modelBuilder.Entity<Artist>()
                 .HasOne(b => b.Description)
                 .WithOne()
-                .HasForeignKey<Description>(p => p.Id);
-            
+                .HasForeignKey<Artist>(p => p.DescriptionId);
+
+            modelBuilder.Entity<Painting>()
+                .HasOne(b => b.Description)
+                .WithOne()
+                .HasForeignKey<Painting>(p => p.DescriptionId);
         }
     }
 }

@@ -33,5 +33,21 @@ namespace WebApplication.Controllers
 
             return View(artist);
         }
+
+        public async Task<IActionResult> Paintings(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var artist = await _artistRepository.GetById(id.Value);
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            return View(artist);
+        }
     }
 }

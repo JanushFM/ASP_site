@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
@@ -23,8 +24,19 @@ namespace Persistence.Repositories
 
         public override async Task<Artist> GetById(int id)
         {
-            return await _context.Set<Artist>().Include(nameof(Description))
-                .FirstOrDefaultAsync(artist => artist.Id == id);
+            await _context.Set<Painting>().Include(e => e.Description)
+                .Where(e => e.ArtistId == id).LoadAsync();
+            
+            var artist = await _context.Set<Artist>().Include(e => e.Description)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            
+            // foreach (var painting in artist.Paintings)
+            // {
+            //     await _context.Set<Painting>().Include(e => e.Description)
+            //         .Where(e => e.DescriptionId == painting.DescriptionId).LoadAsync();
+            // }
+
+            return artist;
         }
     }
 }

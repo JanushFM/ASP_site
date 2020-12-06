@@ -15,6 +15,7 @@
             <e p="IDescriptionRepository.cs" t="Include" />
             <e p="IGenericRepository.cs" t="Include" />
             <e p="IMovieRepository.cs" t="Include" />
+            <e p="IPaintingRepository.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -34,12 +35,14 @@
           <e p="BaseEntity.cs" t="Include" />
           <e p="Description.cs" t="Include" />
           <e p="Movie.cs" t="Include" />
+          <e p="Painting.cs" t="Include" />
         </e>
         <e p="Maps" t="Include">
           <e p="ArtistMap.cs" t="Include" />
           <e p="DescriptionMap.cs" t="Include" />
           <e p="IEntityBuilder.cs" t="Include" />
           <e p="MovieMap.cs" t="Include" />
+          <e p="PaintingMap.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -69,6 +72,7 @@
           <e p="DescriptionRepository.cs" t="Include" />
           <e p="GenericRepository.cs" t="Include" />
           <e p="MovieRepository.cs" t="Include" />
+          <e p="PaintingRepository.cs" t="Include" />
         </e>
       </e>
       <e p="Presentation" t="Include" />
@@ -81,8 +85,8 @@
           <e p="MoviesController.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201205190636_InitialCreate.cs" t="Include" />
-          <e p="20201205190636_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201206135103_InitialCreate.cs" t="Include" />
+          <e p="20201206135103_InitialCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -108,6 +112,7 @@
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="Paintings.cshtml" t="Include" />
           </e>
           <e p="Movies" t="Include">
             <e p="Create.cshtml" t="Include" />
@@ -132,6 +137,8 @@
           <e p="images" t="Include">
             <e p="Leonardo_da_Vinci_portrait_Ti9m3nK.jpg" t="Include" />
             <e p="logo.png" t="Include" />
+            <e p="mono_lisa.jpg" t="Include" />
+            <e p="Starry_Night.jpg" t="Include" />
             <e p="Vincent_van_Gogh__portrait.jpg" t="Include" />
           </e>
           <e p="js" t="Include">
