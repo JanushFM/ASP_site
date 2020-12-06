@@ -63,7 +63,7 @@ namespace WebApplication
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Movies}/{action=Index}/{id?}");
+                    pattern: "{controller=Artists}/{action=Index}/{id?}");
             });
         }
     }
