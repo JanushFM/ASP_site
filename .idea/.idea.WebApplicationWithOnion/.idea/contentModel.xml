@@ -134,7 +134,9 @@
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
+            <e p="Leonardo_da_Vinci_portrait_Ti9m3nK.jpg" t="Include" />
             <e p="logo.png" t="Include" />
+            <e p="Vincent_van_Gogh__portrait.jpg" t="Include" />
           </e>
           <e p="js" t="Include">
             <e p="site.js" t="Include" />
