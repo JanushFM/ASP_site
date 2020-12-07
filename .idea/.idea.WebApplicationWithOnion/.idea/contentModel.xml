@@ -88,6 +88,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
+          <e p="AdministrationController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
@@ -115,6 +116,8 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="ViewModels" t="Include">
+          <e p="CreateRoleViewModel.cs" t="Include" />
+          <e p="EditRoleViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="RegisterViewModel.cs" t="Include" />
         </e>
@@ -125,6 +128,11 @@
             <e p="Login.cshtml" t="Include" />
             <e p="Register.cshtml" t="Include" />
             <e p="Settings.cshtml" t="Include" />
+          </e>
+          <e p="Administration" t="Include">
+            <e p="CreateRole.cshtml" t="Include" />
+            <e p="EditRole.cshtml" t="Include" />
+            <e p="ListRoles.cshtml" t="Include" />
           </e>
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
@@ -142,6 +150,7 @@
             <e p="_Layout.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
+            <e p="NotFound.cshtml" t="Include" />
           </e>
           <e p="ShoppingList" t="Include">
             <e p="Orders.cshtml" t="Include" />
