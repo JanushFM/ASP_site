@@ -1,5 +1,7 @@
 ﻿@model Domain.Entities.Artist
-
+@{
+    ViewData["Title"] = "Paintings";
+}
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">@Html.DisplayFor(model => model.Name) album</h1>
