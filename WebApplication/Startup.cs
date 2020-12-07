@@ -7,6 +7,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,13 @@ namespace WebApplication
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext)),
                     b => b.MigrationsAssembly("WebApplication")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                })
+                .AddEntityFrameworkStores<ApplicationContext>();
             
             services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
             services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
@@ -54,7 +62,7 @@ namespace WebApplication
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

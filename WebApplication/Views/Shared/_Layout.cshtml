@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> SignInManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -14,7 +16,6 @@
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-controller="Artists" asp-action="Index">
                 <img src="~/images/logo.png" alt="Home" width="275"/>
-                @* <span style="font-family:'Lovely Home'"><h1>Janush F.M.</h1></span> *@
             </a>
 
 
@@ -25,21 +26,38 @@
 
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Artists" asp-action="Index">
-                            <h4>Home</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Artists" asp-action="Index">
-                            <h4>Shopping List</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Artists" asp-action="Index">
-                            <h4>Profile</h4>
-                        </a>
-                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-header" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                <h4>Hello, @User.Identity.Name</h4>
+                            </a>    
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#"><h5>Profile</h5></a>
+                                <a class="dropdown-item" href="#"><h5>Shopping list</h5></a>
+                                <div class="dropdown-divider"></div>
+                                <form method="post" asp-action="Logout" asp-controller="Account">
+                                    <button type="submit" class="dropdown-item">
+                                        <h5>Logout</h5>
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="account" asp-action="register">
+                                <h4>Register</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="account" asp-action="login">
+                                <h4>Login</h4>
+                            </a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>

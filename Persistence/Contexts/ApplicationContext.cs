@@ -1,10 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Maps;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace Persistence.Contexts
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext
     {
         public ApplicationContext()
         {

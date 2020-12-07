@@ -81,12 +81,15 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="AccountController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
           <e p="20201206135103_InitialCreate.cs" t="Include" />
           <e p="20201206135103_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201207113220_SecondMigration.cs" t="Include" />
+          <e p="20201207113220_SecondMigration.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -106,9 +109,15 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="ViewModels" t="Include">
+          <e p="RegisterViewModel.cs" t="Include" />
+        </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Account" t="Include">
+            <e p="Register.cshtml" t="Include" />
+          </e>
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
