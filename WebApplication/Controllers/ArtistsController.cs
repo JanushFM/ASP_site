@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Controllers
@@ -48,6 +49,13 @@ namespace WebApplication.Controllers
             }
 
             return View(artist);
+        }
+        
+        [Authorize]
+        public IActionResult BuyPainting(int ?id)
+        {
+            // todo add adding order 
+            return RedirectToAction("orders", "ShoppingList");
         }
     }
 }

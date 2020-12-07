@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Contexts
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<AppUser>
     {
         public ApplicationContext()
         {
@@ -33,6 +33,12 @@ namespace Persistence.Contexts
                 .HasOne(b => b.Description)
                 .WithOne()
                 .HasForeignKey<Painting>(p => p.DescriptionId);
+            
+            modelBuilder.Entity<Order>()
+                .HasOne(b => b.Painting)
+                .WithOne()
+                .HasForeignKey<Order>(p => p.PaintingId);
+            
         }
     }
 }

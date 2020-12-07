@@ -34,10 +34,12 @@ namespace WebApplication
                 options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext)),
                     b => b.MigrationsAssembly("WebApplication")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
                 {
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
+                    
+                    options.User.RequireUniqueEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationContext>();
             

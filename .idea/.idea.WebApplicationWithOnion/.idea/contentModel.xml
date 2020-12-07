@@ -11,10 +11,12 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Interfaces" t="Include">
           <e p="IRepositories" t="Include">
+            <e p="IAppUserRepository.cs" t="Include" />
             <e p="IArtistRepository.cs" t="Include" />
             <e p="IDescriptionRepository.cs" t="Include" />
             <e p="IGenericRepository.cs" t="Include" />
             <e p="IMovieRepository.cs" t="Include" />
+            <e p="IOrderRepository.cs" t="Include" />
             <e p="IPaintingRepository.cs" t="Include" />
           </e>
         </e>
@@ -31,10 +33,12 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain.csproj" t="IncludeRecursive" />
         <e p="Entities" t="Include">
+          <e p="AppUser.cs" t="Include" />
           <e p="Artist.cs" t="Include" />
           <e p="BaseEntity.cs" t="Include" />
           <e p="Description.cs" t="Include" />
           <e p="Movie.cs" t="Include" />
+          <e p="Order.cs" t="Include" />
           <e p="Painting.cs" t="Include" />
         </e>
         <e p="Maps" t="Include">
@@ -68,10 +72,12 @@
         </e>
         <e p="Persistence.csproj" t="IncludeRecursive" />
         <e p="Repositories" t="Include">
+          <e p="AppUserRepository.cs" t="Include" />
           <e p="ArtistRepository.cs" t="Include" />
           <e p="DescriptionRepository.cs" t="Include" />
           <e p="GenericRepository.cs" t="Include" />
           <e p="MovieRepository.cs" t="Include" />
+          <e p="OrderRepository.cs" t="Include" />
           <e p="PaintingRepository.cs" t="Include" />
         </e>
       </e>
@@ -84,12 +90,11 @@
           <e p="AccountController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
+          <e p="ShoppingListController.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201206135103_InitialCreate.cs" t="Include" />
-          <e p="20201206135103_InitialCreate.Designer.cs" t="Include" />
-          <e p="20201207113220_SecondMigration.cs" t="Include" />
-          <e p="20201207113220_SecondMigration.Designer.cs" t="Include" />
+          <e p="20201207173406_InitialCreate.cs" t="Include" />
+          <e p="20201207173406_InitialCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -119,6 +124,7 @@
           <e p="Account" t="Include">
             <e p="Login.cshtml" t="Include" />
             <e p="Register.cshtml" t="Include" />
+            <e p="Settings.cshtml" t="Include" />
           </e>
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
@@ -136,6 +142,9 @@
             <e p="_Layout.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
+          </e>
+          <e p="ShoppingList" t="Include">
+            <e p="Orders.cshtml" t="Include" />
           </e>
         </e>
         <e p="WebApplication.csproj" t="IncludeRecursive" />

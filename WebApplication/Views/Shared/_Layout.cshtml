@@ -1,4 +1,5 @@
-﻿@inject SignInManager<IdentityUser> SignInManager;
+﻿@using Domain.Entities
+@inject SignInManager<AppUser> SignInManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +34,12 @@
                                 <h4>Hello, @User.Identity.Name</h4>
                             </a>    
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#"><h5>Profile</h5></a>
-                                <a class="dropdown-item" href="#"><h5>Shopping list</h5></a>
+                                <a class="dropdown-item" asp-action="Settings" asp-controller="Account">
+                                    <h5>Profile</h5>
+                                </a>
+                                <a class="dropdown-item" asp-action="Orders" asp-controller="ShoppingList">
+                                    <h5>Shopping list</h5>
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <form method="post" asp-action="Logout" asp-controller="Account">
                                     <button type="submit" class="dropdown-item">
