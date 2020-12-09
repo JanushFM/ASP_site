@@ -252,26 +252,24 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = $"User with Id = {model.Id} cannot be found";
                 return View("NotFound");
             }
-            else
+
+            user.Email = model.Email;
+            user.UserName = model.UserName;
+            user.Address = model.Address;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
             {
-                user.Email = model.Email;
-                user.UserName = model.UserName;
-                user.Address = model.Address;
-
-                var result = await _userManager.UpdateAsync(user);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("ListUsers");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-                return View(model);
+                return RedirectToAction("ListUsers");
             }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+
+            return View(model);
         }
 
         [HttpPost]

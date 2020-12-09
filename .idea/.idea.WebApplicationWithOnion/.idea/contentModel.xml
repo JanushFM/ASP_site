@@ -116,6 +116,7 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="ViewModels" t="Include">
+          <e p="AccountSettingsViewModel.cs" t="Include" />
           <e p="CreateRoleViewModel.cs" t="Include" />
           <e p="EditRoleViewModel.cs" t="Include" />
           <e p="EditUserViewModel.cs" t="Include" />

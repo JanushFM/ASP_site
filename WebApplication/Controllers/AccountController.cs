@@ -112,11 +112,50 @@ namespace WebApplication.Controllers
         }
 
         [Authorize(Roles = "User")]
-        public IActionResult Settings()
+        [HttpGet]
+        public async Task<IActionResult> Settings()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
+            
+            AccountSettingsViewModel accountSettingsViewModel = new AccountSettingsViewModel
+            {
+                Email = user.Email,
+                Address = user.Address,
+                PhoneNumber = user.PhoneNumber
+            };
+            return View(accountSettingsViewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Settings(AccountSettingsViewModel accountSettings)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
+
+            // user.Email = accountSettings.Email;
+            user.Address = accountSettings.Address;
+            user.PhoneNumber = accountSettings.PhoneNumber;
+            
+            var result = await _userManager.UpdateAsync(user);
+            
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+            
+            return View(accountSettings);
+
+
+        }
         [HttpGet]
         public IActionResult AccessDenied()
         {

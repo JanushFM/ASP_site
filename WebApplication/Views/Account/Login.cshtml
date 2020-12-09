@@ -28,15 +28,14 @@
         <button class="btn btn-primary btn-block" type="submit">Login</button>
     </form>
     <div>
-        @if (Model?.ExternalLogins?.Count != 0)
+        @if (Model?.ExternalLogins != null)
         {
             <form class="form-signin" method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
                 <button class="btn btn-light btn-block" type="submit" value="@Model.ExternalLogins[0].Name" name="provider">
-                    
-                        <span class="">Log in with Google</span>
-                    
+                    <span class="">Log in with Google</span>
                 </button>
             </form>
         }
+
     </div>
 </div>
