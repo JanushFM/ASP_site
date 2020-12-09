@@ -23,25 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5276e54-c536-4a69-a751-53cf0ed86396" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApplication/ViewModels/EditUserViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/ViewModels/UserRoleViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/ViewModels/UserRolesViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Account/AccessDenied.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUser.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUsersInRole.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ListUsers.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ManageUserRoles.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication/wwwroot/css/logIn.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persistence/Contexts/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Persistence/Contexts/ApplicationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication/MvcMovie.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/MvcMovie.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/ListRoles.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ListRoles.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Account/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Account/Register.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,15 +60,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Domain/Entities/Artist.cs" />
-        <option value="$PROJECT_DIR$/Persistence/Repositories/PaintingRepository.cs" />
-        <option value="$PROJECT_DIR$/Domain/Maps/ArtistMap.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Artists/Index.cshtml" />
-        <option value="$PROJECT_DIR$/Persistence/Repositories/ArtistRepository.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/_ViewImports.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/ViewModels/LoginViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Artists/Biography.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Account/Login.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Artists/Paintings.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Account/ShoppingList.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/ShoppingList/Index.cshtml" />
@@ -92,9 +72,7 @@
         <option value="$PROJECT_DIR$/Persistence/Repositories/AppUserRepository.cs" />
         <option value="$PROJECT_DIR$/Persistence/Repositories/OrderRepository.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Painting.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Startup.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Order.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Account/Register.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/ViewModels/RegisterViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/ViewModels/AccountSettingsViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Account/Settings.cshtml" />
@@ -110,7 +88,6 @@
         <option value="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/AccessDenied.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Program.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/ViewModels/EditUserViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" />
         <option value="$PROJECT_DIR$/Domain/Entities/AppUser.cs" />
@@ -124,6 +101,16 @@
         <option value="$PROJECT_DIR$/WebApplication/ViewModels/UserRolesViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ManageUserRoles.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Account/AccessDenied.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Startup.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/ViewModels/LoginViewModel.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/wwwroot/css/signIn.js" />
+        <option value="$PROJECT_DIR$/WebApplication/wwwroot/css/logInjs.js" />
+        <option value="$PROJECT_DIR$/WebApplication/wwwroot/css/logInjs.css" />
+        <option value="$PROJECT_DIR$/WebApplication/wwwroot/images/google_icon.svg" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Account/Register.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Account/Login.cshtml" />
       </list>
     </option>
   </component>
@@ -200,7 +187,7 @@
       <workItem from="1607368933572" duration="4418000" />
       <workItem from="1607424749424" duration="6848000" />
       <workItem from="1607455269719" duration="6144000" />
-      <workItem from="1607511529478" duration="985000" />
+      <workItem from="1607511529478" duration="10415000" />
     </task>
     <servers />
   </component>
@@ -241,22 +228,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607111700791" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1607512298734">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1607525942853">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607512298734" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1607512298733">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607525942853" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1607525942852">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607512298733" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1607512298733">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607525942852" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1607525942852">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607512298733" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1607512298733">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607525942852" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1607525942852">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607512298733" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607525942852" />
     <state width="1493" height="442" key="GridCell.Tab.1.bottom" timestamp="1607431650062">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -337,10 +324,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1607167739380" />
-    <state x="675" y="184" width="793" height="592" key="find.popup" timestamp="1607460449804">
+    <state x="675" y="184" width="793" height="592" key="find.popup" timestamp="1607524086831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="675" y="184" width="793" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607460449804" />
+    <state x="675" y="184" width="793" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607524086831" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607431175858">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -102,8 +102,6 @@
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="MvcMovie.db" t="Include" />
-        <e p="MvcMovie.db-shm" t="Include" />
-        <e p="MvcMovie.db-wal" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -170,10 +168,12 @@
         <e p="wwwroot" t="Include">
           <e p="css" t="Include">
             <e p="album.css" t="Include" />
+            <e p="logIn.css" t="Include" />
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
+            <e p="Access_Denied.jpg" t="Include" />
             <e p="Leonardo_da_Vinci_portrait_Ti9m3nK.jpg" t="Include" />
             <e p="logo.png" t="Include" />
             <e p="mono_lisa.jpg" t="Include" />

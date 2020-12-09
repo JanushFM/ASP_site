@@ -42,7 +42,12 @@ namespace WebApplication
                     options.User.RequireUniqueEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationContext>();
-            
+            services.AddAuthentication().
+                AddGoogle(options =>
+                {
+                    options.ClientId = "1042013156337-3mkn3ee6ud4lnvgokn6e1av7eknsbsst.apps.googleusercontent.com";
+                    options.ClientSecret = "jodJ5fsoU2ZzTgx5YaAnMUI1";
+                });
             services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
             services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
             services.AddScoped(typeof(IDescriptionRepository), typeof(DescriptionRepository));

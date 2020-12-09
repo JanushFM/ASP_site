@@ -1,34 +1,42 @@
 ﻿@model WebApplication.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewBag.Title = "User Login";
 }
+<div class="text-center">
+    <link rel="stylesheet" href="~/css/logIn.css"/>
+    <form class="form-signin" method="post" asp-action="Login" asp-controller="Account">
+        <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 
-<h1>User Login</h1>
+        <label asp-for="Email" class="sr-only">Email address</label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+        <span asp-validation-for="Email" class="form-text text-danger"></span>
 
-<div class="row">
-    <div class="col-md-12">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="RememberMe">
-                        <input asp-for="RememberMe" />
-                        @Html.DisplayNameFor(m => m.RememberMe)
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+        <label asp-for="Password" class="sr-only">Password</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required="">
+        <span asp-validation-for="Password" class="form-text text-danger"></span>
+
+        <div asp-validation-summary="ModelOnly" class="form-text text-danger"></div>
+
+        <div class="checkbox mb-3">
+            <label asp-for="RememberMe">
+                <input asp-for="RememberMe"/>
+                @Html.DisplayNameFor(m => m.RememberMe)
+            </label>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">Login</button>
+    </form>
+    <div>
+        @if (Model?.ExternalLogins?.Count != 0)
+        {
+            <form class="form-signin" method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                <button class="btn btn-light btn-block" type="submit" value="@Model.ExternalLogins[0].Name" name="provider">
+                    
+                        <span class="">Log in with Google</span>
+                    
+                </button>
+            </form>
+        }
     </div>
 </div>
