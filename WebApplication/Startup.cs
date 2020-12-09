@@ -41,7 +41,9 @@ namespace WebApplication
                     
                     options.User.RequireUniqueEmail = true;
                 })
-                .AddEntityFrameworkStores<ApplicationContext>();
+                .AddEntityFrameworkStores<ApplicationContext>()
+                .AddDefaultTokenProviders();
+            
             services.AddAuthentication().
                 AddGoogle(options =>
                 {

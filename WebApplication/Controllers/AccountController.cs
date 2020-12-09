@@ -5,6 +5,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -13,12 +14,15 @@ namespace WebApplication.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -46,6 +50,8 @@ namespace WebApplication.Controllers
                 // SignInManager and redirect to index action of HomeController
                 if (result.Succeeded)
                 {
+                    var confirmationLink = GetConfirmationLink(user);
+                    _logger.Log(LogLevel.Warning, confirmationLink.Result);
                     if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         return RedirectToAction("ListUsers", "Administration");
@@ -141,7 +147,7 @@ namespace WebApplication.Controllers
                 return View("NotFound");
             }
 
-            // user.Email = accountSettings.Email;
+            user.Email = accountSettings.Email;
             user.Address = accountSettings.Address;
             user.PhoneNumber = accountSettings.PhoneNumber;
             
@@ -158,6 +164,12 @@ namespace WebApplication.Controllers
         }
         [HttpGet]
         public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmationRequired()
         {
             return View();
         }
@@ -237,8 +249,10 @@ namespace WebApplication.Controllers
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email)
                         };
-
+                        
                         await _userManager.CreateAsync(user);
+                        var confirmationLink = GetConfirmationLink(user);
+                        _logger.Log(LogLevel.Warning, confirmationLink.Result);
                     }
 
                     // Add a login (i.e insert a row for the user in AspNetUserLogins table)
@@ -254,6 +268,38 @@ namespace WebApplication.Controllers
 
                 return View("Error");
             }
+        }
+
+        public async Task<string> GetConfirmationLink(AppUser user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            return Url.Action("ConfirmEmail", "Account",
+                new { userId = user.Id, token = token }, Request.Scheme);
+        }
+        
+        
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+            {
+                return RedirectToAction("index", "Artists");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"The User ID {userId} is invalid";
+                return View("NotFound");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return View();
+            }
+
+            ViewBag.ErrorTitle = "Email cannot be confirmed";
+            return View("Error");
         }
     }
 }
