@@ -6,7 +6,7 @@ namespace WebApplication.Controllers
     public class ShoppingListController : Controller
     {
         // GET
-        [Authorize]
+        [Authorize(Roles = "User")]
         public IActionResult Orders()
         {
             return View();

@@ -44,6 +44,11 @@ namespace WebApplication.Controllers
                 // SignInManager and redirect to index action of HomeController
                 if (result.Succeeded)
                 {
+                    if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("ListUsers", "Administration");
+                    }
+                    
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("index", "Artists");
                 }
@@ -96,8 +101,15 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         public IActionResult Settings()
+        {
+            return View();
+        }
+        
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
         {
             return View();
         }

@@ -102,6 +102,8 @@
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="MvcMovie.db" t="Include" />
+        <e p="MvcMovie.db-shm" t="Include" />
+        <e p="MvcMovie.db-wal" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -118,13 +120,17 @@
         <e p="ViewModels" t="Include">
           <e p="CreateRoleViewModel.cs" t="Include" />
           <e p="EditRoleViewModel.cs" t="Include" />
+          <e p="EditUserViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="RegisterViewModel.cs" t="Include" />
+          <e p="UserRolesViewModel.cs" t="Include" />
+          <e p="UserRoleViewModel.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewImports.cshtml" t="Include" />
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Account" t="Include">
+            <e p="AccessDenied.cshtml" t="Include" />
             <e p="Login.cshtml" t="Include" />
             <e p="Register.cshtml" t="Include" />
             <e p="Settings.cshtml" t="Include" />
@@ -132,7 +138,11 @@
           <e p="Administration" t="Include">
             <e p="CreateRole.cshtml" t="Include" />
             <e p="EditRole.cshtml" t="Include" />
+            <e p="EditUser.cshtml" t="Include" />
+            <e p="EditUsersInRole.cshtml" t="Include" />
             <e p="ListRoles.cshtml" t="Include" />
+            <e p="ListUsers.cshtml" t="Include" />
+            <e p="ManageUserRoles.cshtml" t="Include" />
           </e>
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />

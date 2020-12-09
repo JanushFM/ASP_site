@@ -32,14 +32,26 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-header" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                                 <h4>Hello, @User.Identity.Name</h4>
-                            </a>    
+                            </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-action="Settings" asp-controller="Account">
-                                    <h5>Profile</h5>
-                                </a>
-                                <a class="dropdown-item" asp-action="Orders" asp-controller="ShoppingList">
-                                    <h5>Shopping list</h5>
-                                </a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="dropdown-item" asp-action="ListRoles" asp-controller="Administration">
+                                        <h5>Manage Roles</h5>
+                                    </a>
+                                    <a class="dropdown-item" asp-action="ListUsers" asp-controller="Administration">
+                                        <h5>Manage Users</h5>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-action="Settings" asp-controller="Account">
+                                        <h5>Profile</h5>
+                                    </a>
+                                    <a class="dropdown-item" asp-action="Orders" asp-controller="ShoppingList">
+                                        <h5>Shopping list</h5>
+                                    </a>
+                                }
                                 <div class="dropdown-divider"></div>
                                 <form method="post" asp-action="Logout" asp-controller="Account">
                                     <button type="submit" class="dropdown-item">
