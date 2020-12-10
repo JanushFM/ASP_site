@@ -14,15 +14,12 @@ namespace WebApplication.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly ILogger<AccountController> _logger;
 
         public AccountController(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager,
-            ILogger<AccountController> logger)
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logger;
         }
 
         [HttpGet]
@@ -51,13 +48,24 @@ namespace WebApplication.Controllers
                 if (result.Succeeded)
                 {
                     var confirmationLink = GetConfirmationLink(user);
-                    _logger.Log(LogLevel.Warning, confirmationLink.Result);
+                    var emailService = new EmailSender.EmailSender();
+                    
+                    await emailService.SendEmailAsync(model.Email, "Confirm your account",
+                        $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
+                    
                     if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         return RedirectToAction("ListUsers", "Administration");
                     }
-
-                    await _userManager.AddToRoleAsync(user, "User");
+                    
+                    if (_userManager.Users.Count() == 1)
+                    {
+                        MakeUserAdmin(user);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("index", "Artists");
                 }
@@ -252,11 +260,24 @@ namespace WebApplication.Controllers
                         
                         await _userManager.CreateAsync(user);
                         var confirmationLink = GetConfirmationLink(user);
-                        _logger.Log(LogLevel.Warning, confirmationLink.Result);
+                        
+                        
+                        var emailService = new EmailSender.EmailSender();
+                    
+                        await emailService.SendEmailAsync(user.Email, "Confirm your account",
+                            $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
                     }
 
-                    // Add a login (i.e insert a row for the user in AspNetUserLogins table)
+                    
                     await _userManager.AddLoginAsync(user, info);
+                    if (_userManager.Users.Count() == 1)
+                    {
+                        MakeUserAdmin(user);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect(returnUrl);
@@ -300,6 +321,11 @@ namespace WebApplication.Controllers
 
             ViewBag.ErrorTitle = "Email cannot be confirmed";
             return View("Error");
+        }
+
+        public async void MakeUserAdmin(AppUser user)
+        {
+            await _userManager.AddToRoleAsync(user, "Admin");
         }
     }
 }
