@@ -216,7 +216,7 @@ namespace WebApplication.Migrations
                     ImageName = table.Column<string>(nullable: false),
                     DescriptionId = table.Column<int>(nullable: false),
                     ArtistId = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    Price = table.Column<int>(nullable: false),
                     NumberAvailable = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -318,12 +318,12 @@ namespace WebApplication.Migrations
             migrationBuilder.InsertData(
                 table: "Painting",
                 columns: new[] { "Id", "ArtistId", "DescriptionId", "ImageName", "Name", "NumberAvailable", "Price" },
-                values: new object[] { 2, 1, 4, "Starry_Night.jpg", "Starry Night", 6, 46565m });
+                values: new object[] { 2, 1, 4, "Starry_Night.jpg", "Starry Night", 6, 46565 });
 
             migrationBuilder.InsertData(
                 table: "Painting",
                 columns: new[] { "Id", "ArtistId", "DescriptionId", "ImageName", "Name", "NumberAvailable", "Price" },
-                values: new object[] { 1, 2, 3, "mono_lisa.jpg", "Mona Lisa", 10, 146579m });
+                values: new object[] { 1, 2, 3, "mono_lisa.jpg", "Mona Lisa", 10, 146579 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artist_DescriptionId",

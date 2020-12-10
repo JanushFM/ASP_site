@@ -47,6 +47,17 @@ namespace WebApplication.Controllers
                 // SignInManager and redirect to index action of HomeController
                 if (result.Succeeded)
                 {
+                   
+                    
+                    if (_userManager.Users.Count() == 1)
+                    {
+                        MakeUserAdmin(user);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
+                    
                     var confirmationLink = GetConfirmationLink(user);
                     var emailService = new EmailSender.EmailSender();
                     
@@ -58,14 +69,7 @@ namespace WebApplication.Controllers
                         return RedirectToAction("ListUsers", "Administration");
                     }
                     
-                    if (_userManager.Users.Count() == 1)
-                    {
-                        MakeUserAdmin(user);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "User");
-                    }
+                   
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("index", "Artists");
                 }
@@ -106,6 +110,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 var result = await _signInManager.PasswordSignInAsync(
                     model.Email, model.Password, model.RememberMe, false);
 
@@ -259,6 +264,14 @@ namespace WebApplication.Controllers
                         };
                         
                         await _userManager.CreateAsync(user);
+                        if (_userManager.Users.Count() == 1)
+                        {
+                            MakeUserAdmin(user);
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, "User");
+                        }
                         var confirmationLink = GetConfirmationLink(user);
                         
                         
@@ -270,14 +283,7 @@ namespace WebApplication.Controllers
 
                     
                     await _userManager.AddLoginAsync(user, info);
-                    if (_userManager.Users.Count() == 1)
-                    {
-                        MakeUserAdmin(user);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "User");
-                    }
+                    
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect(returnUrl);
@@ -327,5 +333,6 @@ namespace WebApplication.Controllers
         {
             await _userManager.AddToRoleAsync(user, "Admin");
         }
+        
     }
 }

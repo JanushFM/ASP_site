@@ -303,8 +303,8 @@ namespace WebApplication.Migrations
                     b.Property<int>("NumberAvailable")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -324,7 +324,7 @@ namespace WebApplication.Migrations
                             ImageName = "mono_lisa.jpg",
                             Name = "Mona Lisa",
                             NumberAvailable = 10,
-                            Price = 146579m
+                            Price = 146579
                         },
                         new
                         {
@@ -334,7 +334,7 @@ namespace WebApplication.Migrations
                             ImageName = "Starry_Night.jpg",
                             Name = "Starry Night",
                             NumberAvailable = 6,
-                            Price = 46565m
+                            Price = 46565
                         });
                 });
 

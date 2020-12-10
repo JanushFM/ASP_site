@@ -55,6 +55,9 @@
             </e>
           </e>
         </e>
+        <e p="Seed" t="Include">
+          <e p="SeedRoles.cs" t="Include" />
+        </e>
       </e>
       <e p="Infrastructure" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
@@ -91,17 +94,24 @@
           <e p="AdministrationController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
+          <e p="PaintingsController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
         </e>
+        <e p="EmailSender" t="Include">
+          <e p="EmailSender.cs" t="Include" />
+        </e>
         <e p="Migrations" t="Include">
-          <e p="20201207173406_InitialCreate.cs" t="Include" />
-          <e p="20201207173406_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201210122826_InitialCreate.cs" t="Include" />
+          <e p="20201210122826_InitialCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="MvcMovie.db" t="Include" />
+        <e p="MvcMovie.db-shm" t="Include" />
+        <e p="MvcMovie.db-wal" t="Include" />
+        <e p="MvcMovie.dbs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -122,6 +132,7 @@
           <e p="EditUserViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="RegisterViewModel.cs" t="Include" />
+          <e p="ShoppingListViewModel.cs" t="Include" />
           <e p="UserRolesViewModel.cs" t="Include" />
           <e p="UserRoleViewModel.cs" t="Include" />
         </e>
@@ -130,6 +141,8 @@
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Account" t="Include">
             <e p="AccessDenied.cshtml" t="Include" />
+            <e p="ConfirmationRequired.cshtml" t="Include" />
+            <e p="ConfirmEmail.cshtml" t="Include" />
             <e p="Login.cshtml" t="Include" />
             <e p="Register.cshtml" t="Include" />
             <e p="Settings.cshtml" t="Include" />
@@ -146,13 +159,15 @@
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
-            <e p="Paintings.cshtml" t="Include" />
           </e>
           <e p="Movies" t="Include">
             <e p="Create.cshtml" t="Include" />
             <e p="Delete.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Paintings" t="Include">
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">

@@ -11,12 +11,15 @@ namespace WebApplication.Controllers
     {
         private readonly IArtistRepository _artistRepository;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IOrderRepository _orderRepository;
 
         public ArtistsController(IArtistRepository artistRepository,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            IOrderRepository orderRepository)
         {
             _artistRepository = artistRepository;
             _userManager = userManager;
+            _orderRepository = orderRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -38,41 +41,6 @@ namespace WebApplication.Controllers
             }
 
             return View(artist);
-        }
-
-        public async Task<IActionResult> Paintings(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var artist = await _artistRepository.GetById(id.Value);
-            if (artist == null)
-            {
-                return NotFound();
-            }
-
-            return View(artist);
-        }
-
-        [Authorize]
-        public async Task<IActionResult> BuyPainting(int? id)
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                ViewData["ErrorMessage"] = $"User cannot be found";
-                return View("NotFound");
-            }
-
-            if (!user.EmailConfirmed)
-            {
-                return RedirectToAction("ConfirmationRequired", "Account");
-            }
-
-            // todo add adding order 
-            return RedirectToAction("orders", "ShoppingList");
         }
     }
 }

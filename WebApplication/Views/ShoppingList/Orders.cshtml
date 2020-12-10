@@ -1,2 +1,57 @@
-﻿@* @model TModel *@
+﻿@model WebApplication.ViewModels.ShoppingListViewModel
 
+@{
+    ViewData["Title"] = "Shopping List";
+}
+
+<div class="container" style="padding-top: 1%">
+    <globalization culture ="en-us"/>
+    
+
+    <div class="card card-body">
+        <table class="table table-hover shopping-cart-wrap">
+            <thead class="text-muted">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Amount</th>
+
+                <th>shipping address</th>
+                <th>Update</th>
+                <th>Remove</th>
+            </tr>
+            @if (Model.Orders != null)
+            {
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
+                        <td>@Html.DisplayFor(modelItem => order.Amount)</td>
+                        <td>@Html.DisplayFor(modelItem => order.ShippingAddress)</td>
+                        <td>
+                            <a href="{% url 'update_order' order.id %}" class="btn btn-outline-success"> Update</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_order' order.id %}" class="btn btn-outline-danger"> × Remove</a>
+                        </td>
+
+
+                    </tr>
+                }
+
+            }
+           
+
+            </thead>
+
+            <tbody>
+
+
+        </table>
+        <hr>
+        <h4 class="text-muted" style="text-align: left">Total PRICE: @Html.DisplayFor(modelItem => modelItem.TotalPrice) $</h4>
+
+    </div>
+
+</div>
