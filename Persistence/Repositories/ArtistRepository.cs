@@ -30,12 +30,6 @@ namespace Persistence.Repositories
             var artist = await _context.Set<Artist>().Include(e => e.Description)
                 .FirstOrDefaultAsync(e => e.Id == id);
             
-            // foreach (var painting in artist.Paintings)
-            // {
-            //     await _context.Set<Painting>().Include(e => e.Description)
-            //         .Where(e => e.DescriptionId == painting.DescriptionId).LoadAsync();
-            // }
-
             return artist;
         }
     }

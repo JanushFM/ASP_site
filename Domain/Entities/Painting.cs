@@ -16,7 +16,7 @@ namespace Domain.Entities
 
         public int ArtistId { get; set; }
 
-        [Range(1, 100)]
+        
         [DisplayFormat(DataFormatString = "{0:#,###.00}", ApplyFormatInEditMode = true)]
         public int Price { get; set; }
 

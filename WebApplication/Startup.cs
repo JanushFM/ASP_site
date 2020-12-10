@@ -55,6 +55,8 @@ namespace WebApplication
             services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
             services.AddScoped(typeof(IDescriptionRepository), typeof(DescriptionRepository));
             services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
+            services.AddScoped(typeof(IPaintingRepository), typeof(PaintingRepository));
+
 
         }
 

@@ -26,5 +26,12 @@ namespace Persistence.Repositories
             return await _context.Set<Painting>().Include(nameof(Description))
                 .FirstOrDefaultAsync(artist => artist.Id == id);
         }
+
+        public async Task UpdNumPaintings(int paintingId, int numToBuy)
+        {
+            var painting = await _context.Set<Painting>().FirstOrDefaultAsync(e => e.Id == paintingId);
+            painting.NumberAvailable -= numToBuy;
+            await Update(painting);
+        }
     }
 }

@@ -36,5 +36,12 @@ namespace WebApplication.Controllers
             };
             return View(shoppingList);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdOrder(int orderId)
+        {
+            var order = await _orderRepository.GetById(orderId);
+            return View(order);
+        }
     }
 }

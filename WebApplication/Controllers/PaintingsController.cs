@@ -12,17 +12,20 @@ namespace WebApplication.Controllers
         private readonly IArtistRepository _artistRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IPaintingRepository _paintingRepository;
 
         public PaintingsController(
             IArtistRepository artistRepository,
             IOrderRepository orderRepository,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            IPaintingRepository paintingRepository)
         {
             _artistRepository = artistRepository;
             _orderRepository = orderRepository;
             _userManager = userManager;
+            _paintingRepository = paintingRepository;
         }
-        
+
         public async Task<IActionResult> Index(int? artistId)
         {
             if (artistId == null)
@@ -38,8 +41,9 @@ namespace WebApplication.Controllers
 
             return View(artist);
         }
-        
+
         [Authorize]
+        [HttpPost]
         public async Task<IActionResult> BuyPainting(int? id)
         {
             if (id == null)
@@ -47,7 +51,7 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = $"Painting cannot be found";
                 return View("NotFound");
             }
-            
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -60,8 +64,19 @@ namespace WebApplication.Controllers
                 return RedirectToAction("ConfirmationRequired", "Account");
             }
 
-            // todo add adding order
-            await _orderRepository.Add(GetOrder(user, id.Value));
+            var orderIdOrZero = await _orderRepository.IsPaintingInOrder(user.Id, id.Value);
+            if (orderIdOrZero != 0)
+            {
+                var order = await _orderRepository.GetById(orderIdOrZero);
+                order.Amount += 1;
+                await _orderRepository.Update(order);
+            }
+            else
+            {
+                await _orderRepository.Add(GetOrder(user, id.Value));
+            }
+            await _paintingRepository.UpdNumPaintings(id.Value, 1);
+
             return RedirectToAction("orders", "ShoppingList");
         }
 

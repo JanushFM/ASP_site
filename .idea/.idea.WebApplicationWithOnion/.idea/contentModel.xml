@@ -109,8 +109,6 @@
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="MvcMovie.db" t="Include" />
-        <e p="MvcMovie.db-shm" t="Include" />
-        <e p="MvcMovie.db-wal" t="Include" />
         <e p="MvcMovie.dbs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -178,6 +176,7 @@
           </e>
           <e p="ShoppingList" t="Include">
             <e p="Orders.cshtml" t="Include" />
+            <e p="UpdOrder.cshtml" t="Include" />
           </e>
         </e>
         <e p="WebApplication.csproj" t="IncludeRecursive" />
