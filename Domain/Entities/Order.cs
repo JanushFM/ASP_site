@@ -12,5 +12,7 @@ namespace Domain.Entities
         public Painting Painting { get; set; }
         public int Amount { get; set; }
         public string ShippingAddress { get; set; }
+        public bool IsConfirmedByUser { get; set; }  
+        public bool IsReviewedBySailor { get; set; }
     }
 }

@@ -68,6 +68,12 @@ namespace WebApplication.Controllers
             if (orderIdOrZero != 0)
             {
                 var order = await _orderRepository.GetById(orderIdOrZero);
+                if (order.IsConfirmedByUser)
+                {
+                    ViewData["ErrorMessage"] = "You have already confirmed buying this picture.\n" +
+                                               "Our assistant will call you soon !";
+                    return View("NotFound");
+                }
                 order.Amount += 1;
                 await _orderRepository.Update(order);
             }

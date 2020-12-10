@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Domain.Entities.Order>
+
+@{
+    ViewData["Title"] = "User Orders";
+}
+
+<table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Amount</th>
+
+        <th>shipping address</th>
+        <th>Remove</th>
+    </tr>
+
+
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
+            <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
+            <td>@Html.DisplayFor(modelItem => order.Amount)</td>
+            <td>@Html.DisplayFor(modelItem => order.ShippingAddress)</td>
+            <td>
+                <a asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
+            </td>
+
+
+        </tr>
+    }
+    </thead>
+
+</table>

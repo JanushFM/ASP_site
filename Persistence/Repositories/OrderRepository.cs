@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
@@ -16,6 +17,11 @@ namespace Persistence.Repositories
             _context = context;
         }
 
+
+        public override async Task<IEnumerable<Order>> GetAll()
+        {
+            return await _context.Set<Order>().Include(nameof(Painting)).ToListAsync();
+        }
 
         public async Task<int> LoadOrdersWithArtistId(string userId)
         {
@@ -40,5 +46,17 @@ namespace Persistence.Repositories
             return (from order in orders where order.PaintingId == paintingId select order.Id).
                 FirstOrDefault();
         }
+
+        public async Task ConfirmOrders(string userId)
+        {
+            var orders = await _context.Set<Order>()
+                .Where(e => e.AppUserId == userId).ToListAsync();
+            foreach (var order in orders)
+            {
+                order.IsConfirmedByUser = true;
+                await Update(order);
+            }
+        }
+        
     }
 }

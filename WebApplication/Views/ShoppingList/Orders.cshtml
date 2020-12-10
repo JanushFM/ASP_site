@@ -5,9 +5,6 @@
 }
 
 <div class="container" style="padding-top: 1%">
-    <globalization culture ="en-us"/>
-    
-
     <div class="card card-body">
         <table class="table table-hover shopping-cart-wrap">
             <thead class="text-muted">
@@ -16,7 +13,7 @@
                 <th>Price</th>
                 <th>Amount</th>
 
-                <th>shipping address</th>
+                <th>Phone Number</th>
                 <th>Update</th>
                 <th>Remove</th>
             </tr>
@@ -28,15 +25,26 @@
                         <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
                         <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
                         <td>@Html.DisplayFor(modelItem => order.Amount)</td>
-                        <td>@Html.DisplayFor(modelItem => order.ShippingAddress)</td>
-                        <td>
-                            <a asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</a>
-                        </td>
-                        <td>
-                            <a  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
-                        </td>
-
-
+                        <td>@Html.DisplayFor(modelItem => order.PhoneNumber)</td>
+                        @if (order.IsConfirmedByUser)
+                        {
+                            <td>
+                                <button asp-action="UpdOrder" asp-route-orderId="@order.Id"  disabled class="btn btn-outline-success"> Update</button>
+                            </td>
+                            <td>
+                                <button  asp-action="DelOrder" asp-route-orderId="@order.Id" disabled class="btn btn-outline-danger"> × Remove</button>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <button asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</button>
+                            </td>
+                            <td>
+                                <button  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</button>
+                            </td>
+                        }
+                        
                     </tr>
                 }
 
@@ -51,7 +59,13 @@
         </table>
         <hr>
         <h4 class="text-muted" style="text-align: left">Total PRICE: @Html.DisplayFor(modelItem => modelItem.TotalPrice) $</h4>
-
+        
+        <form method="post">
+        @if (Model.IsUnconfOrdersAvailable)
+        {
+            <button type="submit" asp-action="ConfirmOrders" class="btn btn-primary"><h4>Confirm order</h4></button>
+        }
+        </form>
     </div>
 
 </div>

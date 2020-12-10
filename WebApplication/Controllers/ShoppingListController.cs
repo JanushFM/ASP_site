@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -36,7 +38,8 @@ namespace WebApplication.Controllers
             var shoppingList = new ShoppingListViewModel
             {
                 Orders = user.Orders,
-                TotalPrice = totalPrice
+                TotalPrice = totalPrice,
+                IsUnconfOrdersAvailable = IsUnconfOrdersAvlb(user.Orders)
             };
             return View(shoppingList);
         }
@@ -111,6 +114,19 @@ namespace WebApplication.Controllers
             await _paintingRepository.UpdNumPaintings(order.PaintingId, -order.Amount);
             await _orderRepository.Delete(order);
             return RedirectToAction("Orders");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmOrders()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            await _orderRepository.ConfirmOrders(user.Id);
+            return RedirectToAction("Orders");
+        }
+
+        public bool IsUnconfOrdersAvlb(List<Order> orders)
+        {
+            return orders.Any(order => !order.IsConfirmedByUser);
         }
     }
 }
