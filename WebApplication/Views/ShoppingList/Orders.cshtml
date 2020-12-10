@@ -38,10 +38,10 @@
                         else
                         {
                             <td>
-                                <button asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</button>
+                                <a asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</a>
                             </td>
                             <td>
-                                <button  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</button>
+                                <a  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
                             </td>
                         }
                         

@@ -42,6 +42,15 @@
                                     <a class="dropdown-item" asp-action="ListUsers" asp-controller="Administration">
                                         <h5>Manage Users</h5>
                                     </a>
+                                    <a class="dropdown-item" asp-action="ManageOrders" asp-controller="Administration">
+                                        <h5>Manage Orders</h5>
+                                    </a>
+                                }
+                                else if (User.IsInRole("Sailor"))
+                                {
+                                    <a class="dropdown-item" asp-action="ManageOrders" asp-controller="Administration">
+                                        <h5>Manage Orders</h5>
+                                    </a>
                                 }
                                 else
                                 {

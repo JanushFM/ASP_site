@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,12 +15,16 @@ namespace WebApplication.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IOrderRepository _orderRepository;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager,
-            UserManager<AppUser> userManager)
+        public AdministrationController(
+            RoleManager<IdentityRole> roleManager,
+            UserManager<AppUser> userManager,
+            IOrderRepository orderRepository)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _orderRepository = orderRepository;
         }
 
         [HttpGet]
@@ -397,6 +402,28 @@ namespace WebApplication.Controllers
             }
 
             return RedirectToAction("EditUser", new {Id = userId});
+        }
+
+        [AllowAnonymous]
+        [Authorize(Roles = "Sailor,Admin")] // at least sailor or Admin
+        public async Task<IActionResult> ManageOrders()
+        {
+            var orders = await _orderRepository.GetAll();
+            return View(orders);
+        }
+
+
+        public IActionResult DelOrder()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<IActionResult> ReviewOrder(int orderId)
+        {
+            var order = await _orderRepository.GetById(orderId);
+            order.IsReviewedBySailor = true;
+            await _orderRepository.Update(order);
+            return RedirectToAction("ManageOrders");
         }
     }
 }

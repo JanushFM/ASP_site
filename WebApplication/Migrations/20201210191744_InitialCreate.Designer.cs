@@ -9,8 +9,8 @@ using Persistence.Contexts;
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201210181614_addedOrderConfirmedField")]
-    partial class addedOrderConfirmedField
+    [Migration("20201210191744_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -262,7 +262,10 @@ namespace WebApplication.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool>("IsConfirmedByUser")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsReviewedBySailor")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PaintingId")

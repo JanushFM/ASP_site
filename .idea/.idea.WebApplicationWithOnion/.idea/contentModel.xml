@@ -101,18 +101,14 @@
           <e p="EmailSender.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201210122826_InitialCreate.cs" t="Include" />
-          <e p="20201210122826_InitialCreate.Designer.cs" t="Include" />
-          <e p="20201210181614_addedOrderConfirmedField.cs" t="Include" />
-          <e p="20201210181614_addedOrderConfirmedField.Designer.cs" t="Include" />
+          <e p="20201210191744_InitialCreate.cs" t="Include" />
+          <e p="20201210191744_InitialCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
         <e p="MvcMovie.db" t="Include" />
-        <e p="MvcMovie.db-shm" t="Include" />
-        <e p="MvcMovie.db-wal" t="Include" />
         <e p="MvcMovie.dbs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

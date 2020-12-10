@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "User Orders";
 }
-
+<h1>Orders to REVIEW</h1>
 <table class="table table-hover shopping-cart-wrap">
     <thead class="text-muted">
     <tr>
@@ -11,25 +11,57 @@
         <th>Price</th>
         <th>Amount</th>
 
-        <th>shipping address</th>
-        <th>Remove</th>
+        <th>Phone number</th>
+        <th>Review</th>
     </tr>
 
 
     @foreach (var order in Model)
     {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
-            <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
-            <td>@Html.DisplayFor(modelItem => order.Amount)</td>
-            <td>@Html.DisplayFor(modelItem => order.ShippingAddress)</td>
-            <td>
-                <a asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
-            </td>
-
-
-        </tr>
+        @if (order.IsConfirmedByUser && !order.IsReviewedBySailor)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
+                <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
+                <td>@Html.DisplayFor(modelItem => order.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => order.PhoneNumber)</td>
+                <td>
+                    <a asp-action="ReviewOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Review</a>
+                </td>
+            </tr>
+        }
     }
+    </thead>
+
+</table>
+
+<h1>Reviewed Orders</h1>
+<table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Amount</th>
+
+        <th>Phone nubmer</th>
+    </tr>
+
+
+    @foreach (var order in Model)
+    {
+        @if (order.IsConfirmedByUser && order.IsReviewedBySailor)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => order.Painting.Name)</td>
+                <td>@Html.DisplayFor(modelItem => order.Painting.Price) $</td>
+                <td>@Html.DisplayFor(modelItem => order.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => order.PhoneNumber)</td>
+
+
+            </tr>
+        }
+    }
+
     </thead>
 
 </table>

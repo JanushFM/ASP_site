@@ -246,7 +246,9 @@ namespace WebApplication.Migrations
                     AppUserId = table.Column<string>(nullable: true),
                     PaintingId = table.Column<int>(nullable: false),
                     Amount = table.Column<int>(nullable: false),
-                    ShippingAddress = table.Column<string>(nullable: true)
+                    ShippingAddress = table.Column<string>(nullable: true),
+                    IsConfirmedByUser = table.Column<bool>(nullable: false),
+                    IsReviewedBySailor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

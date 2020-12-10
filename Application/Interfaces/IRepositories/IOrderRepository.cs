@@ -10,6 +10,7 @@ namespace Application.Interfaces.IRepositories
         public Task<Order> GetById(string userId, int orderId);
         public Task<int> IsPaintingInOrder(string userId, int paintingId);
         public Task ConfirmOrders(string userId);
+        public Task<bool> IsPhoneNumberAssignedInOrders(string userId);
     }
     
 }

@@ -43,8 +43,7 @@ namespace Persistence.Repositories
                 .Where(e => e.AppUserId == userId).ToListAsync();
 
 
-            return (from order in orders where order.PaintingId == paintingId select order.Id).
-                FirstOrDefault();
+            return (from order in orders where order.PaintingId == paintingId select order.Id).FirstOrDefault();
         }
 
         public async Task ConfirmOrders(string userId)
@@ -57,6 +56,12 @@ namespace Persistence.Repositories
                 await Update(order);
             }
         }
-        
+
+        public async Task<bool> IsPhoneNumberAssignedInOrders(string userId)
+        {
+            var orders = await _context.Set<Order>()
+                .Where(e => e.AppUserId == userId).ToListAsync();
+            return orders.All(order => order.PhoneNumber != null && !order.PhoneNumber.Equals(""));
+        }
     }
 }

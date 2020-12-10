@@ -120,6 +120,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> ConfirmOrders()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (!await _orderRepository.IsPhoneNumberAssignedInOrders(user.Id))
+            {
+                ViewData["ErrorMessage"] = "You have to assign phone number before confirming order !";
+                return View("NotFound");
+            }
             await _orderRepository.ConfirmOrders(user.Id);
             return RedirectToAction("Orders");
         }

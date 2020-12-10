@@ -260,7 +260,10 @@ namespace WebApplication.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool>("IsConfirmedByUser")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsReviewedBySailor")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PaintingId")
