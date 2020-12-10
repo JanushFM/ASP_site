@@ -1,0 +1,17 @@
+﻿@model Domain.Entities.Order
+<div class="card card-body">
+
+
+    <p>Are you sure you don't want to buy @Model.Painting.Name ?</p>
+
+    <form method="POST">
+        <a class="btn btn-warning" asp-action="Orders">Cancel</a>
+
+        <input type="hidden" asp-for="Id"/>
+        <button asp-action="DelOrder"
+                type="submit"
+               class="btn btn-danger">
+            Delete order
+        </button>
+    </form>
+</div>

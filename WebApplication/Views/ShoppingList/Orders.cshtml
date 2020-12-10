@@ -30,10 +30,10 @@
                         <td>@Html.DisplayFor(modelItem => order.Amount)</td>
                         <td>@Html.DisplayFor(modelItem => order.ShippingAddress)</td>
                         <td>
-                            <a href="{% url 'update_order' order.id %}" class="btn btn-outline-success"> Update</a>
+                            <a asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</a>
                         </td>
                         <td>
-                            <a href="{% url 'delete_order' order.id %}" class="btn btn-outline-danger"> × Remove</a>
+                            <a  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
                         </td>
 
 
