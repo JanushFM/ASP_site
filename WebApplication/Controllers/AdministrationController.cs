@@ -21,23 +21,23 @@ namespace WebApplication.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IOrderRepository _orderRepository;
         private readonly IPaintingRepository _paintingRepository;
-        private readonly IDescriptionRepository _descriptionRepository;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IArtistRepository _artistRepository;
 
         public AdministrationController(
             RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
             IOrderRepository orderRepository,
             IPaintingRepository paintingRepository,
-            IDescriptionRepository descriptionRepository,
-            IWebHostEnvironment hostEnvironment)
+            IWebHostEnvironment hostEnvironment,
+            IArtistRepository artistRepository)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _orderRepository = orderRepository;
             _paintingRepository = paintingRepository;
-            _descriptionRepository = descriptionRepository;
             _hostEnvironment = hostEnvironment;
+            _artistRepository = artistRepository;
         }
 
         [HttpGet]
@@ -438,17 +438,54 @@ namespace WebApplication.Controllers
             await _orderRepository.Update(order);
             return RedirectToAction("ManageOrders");
         }
-        
+
         public async Task<IActionResult> ManagePaintings()
         {
             var paintings = await _paintingRepository.GetAll();
             return View(paintings);
         }
-        
-        public IActionResult CreatePainting()
+
+        [HttpGet]
+        public async Task<IActionResult> CreatePainting()
         {
-            throw new System.NotImplementedException();
+            var newPainting = new CreatePaintingViewModel
+            {
+                Artists = await _artistRepository.GetAll(),
+                Description = new Description()
+            };
+
+            return View(newPainting);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePainting(CreatePaintingViewModel newPaintingVM)
+        {
+            // var errors = ModelState
+            //     .Where(x => x.Value.Errors.Count > 0)
+            //     .Select(x => new {x.Key, x.Value.Errors})
+            //     .ToArray();
+            
+            if (ModelState.IsValid)
+            {
+                var imageUniqueName = UploadedFile(newPaintingVM.Image);
+                var newPainting = new Painting
+                {
+                    ArtistId = newPaintingVM.SelectedArtistId,
+                    Description = newPaintingVM.Description,
+                    Name = newPaintingVM.Name,
+                    Price = newPaintingVM.Price,
+                    NumberAvailable = newPaintingVM.NumberAvailable,
+                    ImageName = imageUniqueName
+                };
+                await _paintingRepository.Add(newPainting);
+                return RedirectToAction("ManagePaintings");
+            }
+
+            newPaintingVM.Artists = await _artistRepository.GetAll();
+
+            return View(newPaintingVM);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> EditPainting(int id)
@@ -464,13 +501,13 @@ namespace WebApplication.Controllers
             };
             return View(editPaintingViewModel);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> EditPainting(EditPaintingViewModel updPaintingVM)
         {
             if (ModelState.IsValid)
             {
-                string imageUniqueName = UploadedFile(updPaintingVM.Image);  
+                string imageUniqueName = UploadedFile(updPaintingVM.Image);
                 var painting = await _paintingRepository.GetById(updPaintingVM.Id);
                 painting.Name = updPaintingVM.Name;
                 painting.ImageName = imageUniqueName;
@@ -478,30 +515,31 @@ namespace WebApplication.Controllers
                 painting.NumberAvailable = updPaintingVM.NumberAvailable;
                 painting.Description.BigDescription = updPaintingVM.Description.BigDescription;
                 painting.Description.SmallDescription = updPaintingVM.Description.SmallDescription;
-            
+
                 await _paintingRepository.Update(painting);
                 return RedirectToAction("ManagePaintings");
             }
-           
-            return View();
+
+            return View(updPaintingVM);
         }
 
         //https://www.c-sharpcorner.com/article/upload-and-display-image-in-asp-net-core-3-1/
-        private string UploadedFile(IFormFile image)  
-        {  
-            string uniqueFileName = null;  
-  
-            if (image != null)  
-            {  
-                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");  
-                uniqueFileName = Guid.NewGuid() + "_" + image.FileName;  
+        private string UploadedFile(IFormFile image)
+        {
+            string uniqueFileName = null;
+
+            if (image != null)
+            {
+                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid() + "_" + image.FileName;
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 image.CopyTo(fileStream);
-            }  
-            return uniqueFileName;  
-        }  
-        
+            }
+
+            return uniqueFileName;
+        }
+
         [HttpPost]
         public async Task<IActionResult> DeletePainting(int id)
         {
@@ -509,6 +547,5 @@ namespace WebApplication.Controllers
             await _paintingRepository.Delete(painting);
             return RedirectToAction("ManagePaintings");
         }
-        
     }
 }

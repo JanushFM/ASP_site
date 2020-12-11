@@ -1,4 +1,4 @@
-﻿@model WebApplication.ViewModels.EditPaintingViewModel
+﻿@model WebApplication.ViewModels.CreatePaintingViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,12 +9,16 @@
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="EditPainting">
+            <form asp-action="CreatePainting">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
+                <label asp-for="Artists"></label>
+                <select asp-for="SelectedArtistId" asp-items="@(new SelectList(Model.Artists, "Id", "Name"))"></select>
                 <div class="form-group">
                     <label asp-for="Description.BigDescription" class="control-label"></label>
                     <textarea  asp-for="Description.BigDescription" maxlength="4000" size="4000" style="height: 400px" class="input form-control">
@@ -30,10 +34,12 @@
                 <div class="form-group">
                     <label asp-for="Price" class="control-label"></label>
                     <input asp-for="Price" class="form-control"/>
+                    <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="NumberAvailable" class="control-label"></label>
                     <input asp-for="NumberAvailable" class="form-control"/>
+                    <span asp-validation-for="NumberAvailable" class="text-danger"></span>
                 </div>
                 <div class="form-group">
 
