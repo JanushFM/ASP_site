@@ -127,6 +127,7 @@
           <e p="AccountSettingsViewModel.cs" t="Include" />
           <e p="CreatePaintingViewModel.cs" t="Include" />
           <e p="CreateRoleViewModel.cs" t="Include" />
+          <e p="EditArtistViewModel.cs" t="Include" />
           <e p="EditPaintingViewModel.cs" t="Include" />
           <e p="EditRoleViewModel.cs" t="Include" />
           <e p="EditUserViewModel.cs" t="Include" />
@@ -148,14 +149,17 @@
             <e p="Settings.cshtml" t="Include" />
           </e>
           <e p="Administration" t="Include">
+            <e p="CreateArtist.cshtml" t="Include" />
             <e p="CreatePainting.cshtml" t="Include" />
             <e p="CreateRole.cshtml" t="Include" />
+            <e p="EditArtist.cshtml" t="Include" />
             <e p="EditPainting.cshtml" t="Include" />
             <e p="EditRole.cshtml" t="Include" />
             <e p="EditUser.cshtml" t="Include" />
             <e p="EditUsersInRole.cshtml" t="Include" />
             <e p="ListRoles.cshtml" t="Include" />
             <e p="ListUsers.cshtml" t="Include" />
+            <e p="ManageArtists.cshtml" t="Include" />
             <e p="ManageOrders.cshtml" t="Include" />
             <e p="ManagePaintings.cshtml" t="Include" />
             <e p="ManageUserRoles.cshtml" t="Include" />
@@ -196,11 +200,18 @@
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
             <e p="2ccc0647-9fde-4dbf-a38a-5e92ccdb67c6_Access_Denied.jpg" t="Include" />
+            <e p="363efb8c-1ebb-46fe-873a-2a55bd7be1e3_El_jardín_de_las_Delicias,_de_El_Bosco.jpg" t="Include" />
             <e p="50e0ff96-67fa-4f7e-9156-6b5df4b05b69_b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />
+            <e p="703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
+            <e p="8e295d7c-717a-44c5-8b6e-72a24c4fa690_e4fe6a45-1bdd-4234-b6c6-5fbf62d6efbc_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="Access_Denied.jpg" t="Include" />
+            <e p="ad9fadb3-09c9-46d2-9124-0c88269798cb_mono_lisa.jpg" t="Include" />
             <e p="b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />
+            <e p="c0dc560e-2f72-40d4-b926-d27932555b3d_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="d32fec57-d15e-4694-a697-b32e5f2fc3a7_mono_lisa.jpg" t="Include" />
             <e p="e46a8ba4-1bbd-4952-b73f-fa3d10b1143a_Access_Denied.jpg" t="Include" />
+            <e p="e4fe6a45-1bdd-4234-b6c6-5fbf62d6efbc_Vincent_van_Gogh__portrait.jpg" t="Include" />
+            <e p="e8c9f2ee-10bb-4067-b258-227c79d26837_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="f15ffec7-c2b8-457c-8df9-ebb0e638b424_Access_Denied.jpg" t="Include" />
             <e p="Leonardo_da_Vinci_portrait_Ti9m3nK.jpg" t="Include" />
             <e p="logo.png" t="Include" />

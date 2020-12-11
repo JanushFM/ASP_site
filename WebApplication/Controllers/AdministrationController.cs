@@ -424,12 +424,7 @@ namespace WebApplication.Controllers
             var orders = await _orderRepository.GetAll();
             return View(orders);
         }
-
-
-        public IActionResult DelOrder()
-        {
-            throw new System.NotImplementedException();
-        }
+        
 
         public async Task<IActionResult> ReviewOrder(int orderId)
         {
@@ -546,6 +541,97 @@ namespace WebApplication.Controllers
             var painting = await _paintingRepository.GetById(id);
             await _paintingRepository.Delete(painting);
             return RedirectToAction("ManagePaintings");
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> ManageArtists()
+        {
+            var artists = await _artistRepository.GetAll();
+            return View(artists);
+        }
+
+        [HttpGet]
+        public  IActionResult CreateArtist()
+        {
+            var artistVM = new EditArtistViewModel()
+            {
+                Description = new Description()
+            };
+
+            return View(artistVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateArtist(EditArtistViewModel newArtistVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var imageUniqueName = UploadedFile(newArtistVM.Image);
+                var artist = new Artist
+                {
+                    Name = newArtistVM.Name,
+                    ImageName = imageUniqueName,
+                    Quote = newArtistVM.Quote,
+                    Description = newArtistVM.Description
+                };
+
+                await _artistRepository.Add(artist);
+                return RedirectToAction("ManageArtists");
+            }
+
+            return View(newArtistVM);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditArtist(int id)
+        {
+            var artist = await _artistRepository.GetById(id);
+            var editArtistViewModel = new EditArtistViewModel
+            {
+                Id = artist.Id,
+                Name = artist.Name,
+                Description = artist.Description,
+                Quote = artist.Quote,
+            };
+            return View(editArtistViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditArtist(EditArtistViewModel updArtistVM)
+        {
+            var imageUniqueName = UploadedFile(updArtistVM.Image);
+            if (ModelState.IsValid)
+            {
+                var artist = await _artistRepository.GetById(updArtistVM.Id);
+                artist.Name = updArtistVM.Name;
+                artist.ImageName = imageUniqueName;
+                artist.Quote = updArtistVM.Quote;
+                artist.Description.BigDescription = updArtistVM.Description.BigDescription;
+                artist.Description.SmallDescription = updArtistVM.Description.SmallDescription;
+
+                await _artistRepository.Update(artist);
+                return RedirectToAction("ManageArtists");
+            }
+
+            return View(updArtistVM);
+        }
+
+        public async Task<IActionResult> DeleteArtist(int id)
+        {
+            var artist = await _artistRepository.GetById(id);
+            await _artistRepository.Delete(artist);
+            return RedirectToAction("ManageArtists");
+        }
+
+        public List<bool> CreateListOfFalse(int capacity)
+        {
+            var list = new List<bool>();
+            for (var i = 0; i < capacity; i++)
+            {
+                list.Add(false);
+            }
+
+            return list;
         }
     }
 }
