@@ -16,15 +16,21 @@ namespace WebApplication.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IOrderRepository _orderRepository;
+        private readonly IPaintingRepository _paintingRepository;
+        private readonly IDescriptionRepository _descriptionRepository;
 
         public AdministrationController(
             RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
-            IOrderRepository orderRepository)
+            IOrderRepository orderRepository,
+            IPaintingRepository paintingRepository,
+            IDescriptionRepository descriptionRepository)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _orderRepository = orderRepository;
+            _paintingRepository = paintingRepository;
+            _descriptionRepository = descriptionRepository;
         }
 
         [HttpGet]
@@ -425,5 +431,47 @@ namespace WebApplication.Controllers
             await _orderRepository.Update(order);
             return RedirectToAction("ManageOrders");
         }
+        
+        public async Task<IActionResult> ManagePaintings()
+        {
+            var paintings = await _paintingRepository.GetAll();
+            return View(paintings);
+        }
+        
+        public IActionResult CreatePainting()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditPainting(int id)
+        {
+            var painting = await _paintingRepository.GetById(id);
+            return View(painting);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> EditPainting(Painting updPainting)
+        {
+            var painting = await _paintingRepository.GetById(updPainting.Id);
+            painting.Name = updPainting.Name;
+            painting.ImageName = updPainting.ImageName;
+            painting.Price = updPainting.Price;
+            painting.NumberAvailable = updPainting.NumberAvailable;
+            painting.Description.BigDescription = updPainting.Description.BigDescription;
+            painting.Description.SmallDescription = updPainting.Description.SmallDescription;
+            await _paintingRepository.Update(painting);
+
+            return RedirectToAction("ManagePaintings");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePainting(int id)
+        {
+            var painting = await _paintingRepository.GetById(id);
+            await _paintingRepository.Delete(painting);
+            return RedirectToAction("ManagePaintings");
+        }
+        
     }
 }

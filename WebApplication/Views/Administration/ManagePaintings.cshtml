@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Domain.Entities.Painting>
+
+@{
+    ViewData["Title"] = "Manage Paintings";
+}
+@if (Model.Any())
+{
+    <p>
+        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreatePainting">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberAvailable)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price) $
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberAvailable)
+                </td>
+
+                <td>
+                    <a asp-action="EditPainting" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button asp-action="DeletePainting" asp-route-id="@item.Id"
+                                type="submit"
+                                class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No paintings created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a painting
+            </h5>
+            <a class="btn btn-primary" style="width:auto"
+               asp-action="CreatePainting">
+                Add new user
+            </a>
+        </div>
+    </div>
+}
