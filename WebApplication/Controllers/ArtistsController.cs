@@ -1,8 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
-using Domain.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Controllers
@@ -10,16 +7,10 @@ namespace WebApplication.Controllers
     public class ArtistsController : Controller
     {
         private readonly IArtistRepository _artistRepository;
-        private readonly UserManager<AppUser> _userManager;
-        private readonly IOrderRepository _orderRepository;
 
-        public ArtistsController(IArtistRepository artistRepository,
-            UserManager<AppUser> userManager,
-            IOrderRepository orderRepository)
+        public ArtistsController(IArtistRepository artistRepository)
         {
             _artistRepository = artistRepository;
-            _userManager = userManager;
-            _orderRepository = orderRepository;
         }
 
         public async Task<IActionResult> Index()

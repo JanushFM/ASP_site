@@ -93,6 +93,7 @@
           <e p="AccountController.cs" t="Include" />
           <e p="AdministrationController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
+          <e p="ErrorController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
           <e p="PaintingsController.cs" t="Include" />
           <e p="ShopItemsController.cs" t="Include" />
@@ -100,6 +101,9 @@
         </e>
         <e p="EmailSender" t="Include">
           <e p="EmailSender.cs" t="Include" />
+        </e>
+        <e p="log" t="Include">
+          <e p="internal-nlog.txt" t="Include" />
         </e>
         <e p="Migrations" t="Include">
           <e p="20201210191744_InitialCreate.cs" t="Include" />
@@ -111,6 +115,7 @@
         </e>
         <e p="MvcMovie.db" t="Include" />
         <e p="MvcMovie.dbs" t="Include" />
+        <e p="nlog.config" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -163,6 +168,9 @@
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
+          <e p="Error" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
           <e p="Movies" t="Include">
             <e p="Create.cshtml" t="Include" />
             <e p="Delete.cshtml" t="Include" />
@@ -202,6 +210,7 @@
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
+            <e p="1f55d094-0fe6-4c26-b101-7a5ba8d0848b_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="2ccc0647-9fde-4dbf-a38a-5e92ccdb67c6_Access_Denied.jpg" t="Include" />
             <e p="363efb8c-1ebb-46fe-873a-2a55bd7be1e3_El_jardín_de_las_Delicias,_de_El_Bosco.jpg" t="Include" />
             <e p="50e0ff96-67fa-4f7e-9156-6b5df4b05b69_b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />

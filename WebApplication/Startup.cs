@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Domain.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -68,15 +63,18 @@ namespace WebApplication
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
+                // todo убрать из development
+                app.UseExceptionHandler("/Error");
+                // app.UseDeveloperExceptionPage();
+            }    
+            else if (env.IsProduction())
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
+            // app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
