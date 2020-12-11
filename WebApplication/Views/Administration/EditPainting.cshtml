@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.Painting
+﻿@model WebApplication.ViewModels.EditPaintingViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,40 +8,60 @@
 
 <h4>Movie</h4>
 <hr/>
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditPainting">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description.BigDescription" class="control-label"></label>
-                <textarea  asp-for="Description.BigDescription" maxlength="4000" style="height: 400px" class="input form-control">
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditPainting">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description.BigDescription" class="control-label"></label>
+                    <textarea  asp-for="Description.BigDescription" maxlength="4000" size="4000" style="height: 400px" class="input form-control">
                 </textarea>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description.SmallDescription" class="control-label"></label>
-                <textarea  asp-for="Description.SmallDescription" maxlength="600" style="height: 150px" class="input form-control">
+                    <span asp-validation-for="Description.BigDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description.SmallDescription" class="control-label"></label>
+                    <textarea  asp-for="Description.SmallDescription" maxlength="600" size="600" style="height: 150px" class="input form-control">
                 </textarea>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberAvailable" class="control-label"></label>
-                <input asp-for="NumberAvailable" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageName" class="control-label"></label>
-                <input asp-for="ImageName" class="form-control"/>
-            </div>
-            <input type="hidden" asp-for="Id"/>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary"/>
-            </div>
-        </form>
+                    <span asp-validation-for="Description.SmallDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberAvailable" class="control-label"></label>
+                    <input asp-for="NumberAvailable" class="form-control"/>
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="Image" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Image" class="custom-file-input" id="customFile" type="file">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <input type="hidden" asp-for="Id"/>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</form>
+
+@section scripts{
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            const fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>
+}

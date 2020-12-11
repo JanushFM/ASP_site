@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.ViewModels;
@@ -18,19 +22,22 @@ namespace WebApplication.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly IPaintingRepository _paintingRepository;
         private readonly IDescriptionRepository _descriptionRepository;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public AdministrationController(
             RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
             IOrderRepository orderRepository,
             IPaintingRepository paintingRepository,
-            IDescriptionRepository descriptionRepository)
+            IDescriptionRepository descriptionRepository,
+            IWebHostEnvironment hostEnvironment)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _orderRepository = orderRepository;
             _paintingRepository = paintingRepository;
             _descriptionRepository = descriptionRepository;
+            _hostEnvironment = hostEnvironment;
         }
 
         [HttpGet]
@@ -447,24 +454,54 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> EditPainting(int id)
         {
             var painting = await _paintingRepository.GetById(id);
-            return View(painting);
+            var editPaintingViewModel = new EditPaintingViewModel
+            {
+                Id = painting.Id,
+                Description = painting.Description,
+                Name = painting.Name,
+                NumberAvailable = painting.NumberAvailable,
+                Price = painting.Price
+            };
+            return View(editPaintingViewModel);
         }
         
         [HttpPost]
-        public async Task<IActionResult> EditPainting(Painting updPainting)
+        public async Task<IActionResult> EditPainting(EditPaintingViewModel updPaintingVM)
         {
-            var painting = await _paintingRepository.GetById(updPainting.Id);
-            painting.Name = updPainting.Name;
-            painting.ImageName = updPainting.ImageName;
-            painting.Price = updPainting.Price;
-            painting.NumberAvailable = updPainting.NumberAvailable;
-            painting.Description.BigDescription = updPainting.Description.BigDescription;
-            painting.Description.SmallDescription = updPainting.Description.SmallDescription;
-            await _paintingRepository.Update(painting);
-
-            return RedirectToAction("ManagePaintings");
+            if (ModelState.IsValid)
+            {
+                string imageUniqueName = UploadedFile(updPaintingVM.Image);  
+                var painting = await _paintingRepository.GetById(updPaintingVM.Id);
+                painting.Name = updPaintingVM.Name;
+                painting.ImageName = imageUniqueName;
+                painting.Price = updPaintingVM.Price;
+                painting.NumberAvailable = updPaintingVM.NumberAvailable;
+                painting.Description.BigDescription = updPaintingVM.Description.BigDescription;
+                painting.Description.SmallDescription = updPaintingVM.Description.SmallDescription;
+            
+                await _paintingRepository.Update(painting);
+                return RedirectToAction("ManagePaintings");
+            }
+           
+            return View();
         }
 
+        //https://www.c-sharpcorner.com/article/upload-and-display-image-in-asp-net-core-3-1/
+        private string UploadedFile(IFormFile image)  
+        {  
+            string uniqueFileName = null;  
+  
+            if (image != null)  
+            {  
+                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");  
+                uniqueFileName = Guid.NewGuid() + "_" + image.FileName;  
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                image.CopyTo(fileStream);
+            }  
+            return uniqueFileName;  
+        }  
+        
         [HttpPost]
         public async Task<IActionResult> DeletePainting(int id)
         {

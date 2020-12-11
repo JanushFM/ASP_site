@@ -5,12 +5,12 @@ namespace Domain.Entities
 {
     public class Description : BaseEntity
     {
-        [StringLength(200)]
+        [StringLength(600)]
         [Required]
         [DefaultValue("No SMALL description provided")]
         public string SmallDescription { get; set; }
         
-        [StringLength(400)]
+        [StringLength(4000)]
         [Required]
         [DefaultValue("No BIG description provided")]
         public string BigDescription { get; set; }

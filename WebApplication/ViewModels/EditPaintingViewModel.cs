@@ -1,21 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
-namespace Domain.Entities
+namespace WebApplication.ViewModels
 {
-    public class Painting : BaseEntity
+    public class EditPaintingViewModel
     {
+        public virtual int Id { get; set; }
+        
         [StringLength(120, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
         
-        public string ImageName { get; set; }
+        [Required(ErrorMessage = "Please choose  image")]  
+        [Display(Name = "Picture")]
+        public IFormFile Image { get; set; }
         
-        public int DescriptionId { get; set; }
         public Description Description { get; set; }
-
-        public int ArtistId { get; set; }
-
         
         public int Price { get; set; }
 
