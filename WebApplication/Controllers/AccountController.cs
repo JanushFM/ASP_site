@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApplication.EmailSender;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -14,12 +15,15 @@ namespace WebApplication.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IMailSender _mailSender;
 
         public AccountController(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            IMailSender mailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mailSender = mailSender;
         }
 
         [HttpGet]
@@ -59,9 +63,9 @@ namespace WebApplication.Controllers
                     }
                     
                     var confirmationLink = GetConfirmationLink(user);
-                    var emailService = new EmailSender.EmailSender();
                     
-                    await emailService.SendEmailAsync(model.Email, "Confirm your account",
+                    
+                    await _mailSender.SendEmailAsync(model.Email, "Confirm your account",
                         $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
                     
                     if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -275,9 +279,8 @@ namespace WebApplication.Controllers
                         var confirmationLink = GetConfirmationLink(user);
                         
                         
-                        var emailService = new EmailSender.EmailSender();
                     
-                        await emailService.SendEmailAsync(user.Email, "Confirm your account",
+                        await _mailSender.SendEmailAsync(user.Email, "Confirm your account",
                             $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
                     }
 

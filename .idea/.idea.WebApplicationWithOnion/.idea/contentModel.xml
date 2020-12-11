@@ -101,6 +101,7 @@
         </e>
         <e p="EmailSender" t="Include">
           <e p="EmailSender.cs" t="Include" />
+          <e p="IMailSender.cs" t="Include" />
         </e>
         <e p="log" t="Include">
           <e p="internal-nlog.txt" t="Include" />

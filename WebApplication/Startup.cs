@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
 using Persistence.Repositories;
+using WebApplication.EmailSender;
 
 namespace WebApplication
 {
@@ -17,6 +18,7 @@ namespace WebApplication
     {
         public Startup(IConfiguration configuration)
         {
+            
             Configuration = configuration;
         }
 
@@ -40,17 +42,19 @@ namespace WebApplication
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
             
+
             services.AddAuthentication().
                 AddGoogle(options =>
                 {
-                    options.ClientId = "1042013156337-3mkn3ee6ud4lnvgokn6e1av7eknsbsst.apps.googleusercontent.com";
-                    options.ClientSecret = "jodJ5fsoU2ZzTgx5YaAnMUI1";
+                    options.ClientId = Configuration["GoogleClientId"];
+                    options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
             services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
             services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
             services.AddScoped(typeof(IDescriptionRepository), typeof(DescriptionRepository));
             services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
             services.AddScoped(typeof(IPaintingRepository), typeof(PaintingRepository));
+            services.AddTransient<IMailSender, EmailSender.EmailSender>();
 
 
         }
@@ -63,16 +67,28 @@ namespace WebApplication
         {
             if (env.IsDevelopment())
             {
-                // todo убрать из development
-                app.UseExceptionHandler("/Error");
-                // app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }    
             else if (env.IsProduction())
             {
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(env.ContentRootPath)
+                    .AddJsonFile("appsettings.json", 
+                        optional: false, 
+                        reloadOnChange: true)
+                    .AddEnvironmentVariables();
+
+                if (env.IsDevelopment())
+                {
+                    builder.AddUserSecrets<Startup>();
+                }
+
+                builder.AddUserSecrets<Startup>();
+                
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
+                
             }
-            // app.UseStatusCodePagesWithRedirects("/Error/{0}");
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             
             app.UseHttpsRedirection();
