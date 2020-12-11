@@ -95,6 +95,7 @@
           <e p="ArtistsController.cs" t="Include" />
           <e p="MoviesController.cs" t="Include" />
           <e p="PaintingsController.cs" t="Include" />
+          <e p="ShopItemsController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
         </e>
         <e p="EmailSender" t="Include">
@@ -149,19 +150,13 @@
             <e p="Settings.cshtml" t="Include" />
           </e>
           <e p="Administration" t="Include">
-            <e p="CreateArtist.cshtml" t="Include" />
-            <e p="CreatePainting.cshtml" t="Include" />
             <e p="CreateRole.cshtml" t="Include" />
-            <e p="EditArtist.cshtml" t="Include" />
-            <e p="EditPainting.cshtml" t="Include" />
             <e p="EditRole.cshtml" t="Include" />
             <e p="EditUser.cshtml" t="Include" />
             <e p="EditUsersInRole.cshtml" t="Include" />
             <e p="ListRoles.cshtml" t="Include" />
             <e p="ListUsers.cshtml" t="Include" />
-            <e p="ManageArtists.cshtml" t="Include" />
             <e p="ManageOrders.cshtml" t="Include" />
-            <e p="ManagePaintings.cshtml" t="Include" />
             <e p="ManageUserRoles.cshtml" t="Include" />
           </e>
           <e p="Artists" t="Include">
@@ -183,6 +178,14 @@
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
             <e p="NotFound.cshtml" t="Include" />
+          </e>
+          <e p="ShopItems" t="Include">
+            <e p="CreateArtist.cshtml" t="Include" />
+            <e p="CreatePainting.cshtml" t="Include" />
+            <e p="EditArtist.cshtml" t="Include" />
+            <e p="EditPainting.cshtml" t="Include" />
+            <e p="ManageArtists.cshtml" t="Include" />
+            <e p="ManagePaintings.cshtml" t="Include" />
           </e>
           <e p="ShoppingList" t="Include">
             <e p="DelOrder.cshtml" t="Include" />
