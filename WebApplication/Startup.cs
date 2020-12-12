@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
 using Persistence.Repositories;
 using WebApplication.EmailSender;
+using WebApplication.Hubs;
 
 namespace WebApplication
 {
@@ -28,6 +29,7 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext)),
                     b => b.MigrationsAssembly("WebApplication")));
@@ -105,6 +107,7 @@ namespace WebApplication
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Artists}/{action=Index}/{id?}");
+                endpoints.MapHub<OrderHub>("/chathub");
             });
         }
     }

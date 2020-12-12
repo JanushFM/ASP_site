@@ -42,15 +42,12 @@ namespace Persistence.Repositories
             var orders = await _context.Set<Order>()
                 .Where(e => e.AppUserId == userId).ToListAsync();
 
-
             return (from order in orders where order.PaintingId == paintingId select order.Id).FirstOrDefault();
         }
 
-        public async Task ConfirmOrders(string userId)
+        public async Task ConfirmOrders(IEnumerable<Order> ordersToConfirm)
         {
-            var orders = await _context.Set<Order>()
-                .Where(e => e.AppUserId == userId).ToListAsync();
-            foreach (var order in orders)
+            foreach (var order in ordersToConfirm)
             {
                 order.IsConfirmedByUser = true;
                 await Update(order);

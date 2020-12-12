@@ -6,7 +6,9 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
+using WebApplication.Hubs;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -17,15 +19,18 @@ namespace WebApplication.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IOrderRepository _orderRepository;
         private readonly IPaintingRepository _paintingRepository;
+        private readonly IHubContext<OrderHub> _orderHub;
 
         public ShoppingListController(
             UserManager<AppUser> userManager,
             IOrderRepository orderRepository,
-            IPaintingRepository paintingRepository)
+            IPaintingRepository paintingRepository,
+            IHubContext<OrderHub> orderHub)
         {
             _userManager = userManager;
             _orderRepository = orderRepository;
             _paintingRepository = paintingRepository;
+            _orderHub = orderHub;
         }
 
 
@@ -98,7 +103,7 @@ namespace WebApplication.Controllers
 
             return View(order);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> DelOrder(Order orderToDel)
         {
@@ -120,18 +125,33 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> ConfirmOrders()
         {
             var user = await _userManager.GetUserAsync(User);
+            await _orderRepository.LoadOrdersWithArtistId(user.Id);
+
             if (!await _orderRepository.IsPhoneNumberAssignedInOrders(user.Id))
             {
                 ViewData["ErrorMessage"] = "You have to assign phone number before confirming order !";
                 return View("NotFound");
             }
-            await _orderRepository.ConfirmOrders(user.Id);
+            var ordersToConfirm = GetListOrdersToConfirm(user.Orders);
+            var jsonOrdersToConfirm = JsonConvert.SerializeObject(ordersToConfirm);    
+
+            await _orderHub.Clients.All.SendAsync("ReceiveMessage", jsonOrdersToConfirm);
+
+            await _orderRepository.ConfirmOrders(ordersToConfirm);
             return RedirectToAction("Orders");
         }
 
         public bool IsUnconfOrdersAvlb(List<Order> orders)
         {
             return orders.Any(order => !order.IsConfirmedByUser);
+        }
+
+        
+        public List<Order> GetListOrdersToConfirm(List<Order> orders)
+        {
+            return orders.Where(order => !order.IsConfirmedByUser).ToList();
+            // все заказы, что ещё не
+            // подтверждены должны быть подтвержденны
         }
     }
 }

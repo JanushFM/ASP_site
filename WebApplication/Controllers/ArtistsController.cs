@@ -18,6 +18,11 @@ namespace WebApplication.Controllers
             return View(await _artistRepository.GetAll());
         }
 
+        public IActionResult TestSignal()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Biography(int? id)
         {
             if (id == null)

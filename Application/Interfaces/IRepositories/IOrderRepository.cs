@@ -9,7 +9,7 @@ namespace Application.Interfaces.IRepositories
         public Task<int> LoadOrdersWithArtistId(string userId);
         public Task<Order> GetById(string userId, int orderId);
         public Task<int> IsPaintingInOrder(string userId, int paintingId);
-        public Task ConfirmOrders(string userId);
+        public Task ConfirmOrders(IEnumerable<Order> ordersToConfirm);
         public Task<bool> IsPhoneNumberAssignedInOrders(string userId);
     }
     
