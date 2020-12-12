@@ -408,7 +408,7 @@ namespace WebApplication.Controllers
             return RedirectToAction("EditUser", new {Id = userId});
         }
 
-        [AllowAnonymous]
+        
         [Authorize(Roles = "Sailor,Admin")] // at least sailor or Admin
         public async Task<IActionResult> ManageOrders()
         {
@@ -416,7 +416,7 @@ namespace WebApplication.Controllers
             return View(orders);
         }
         
-
+        [Authorize(Roles = "Sailor,Admin")] // at least sailor or Admin
         public async Task<IActionResult> ReviewOrder(int orderId)
         {
             var order = await _orderRepository.GetById(orderId);

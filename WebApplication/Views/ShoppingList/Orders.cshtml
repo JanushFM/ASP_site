@@ -29,10 +29,10 @@
                         @if (order.IsConfirmedByUser)
                         {
                             <td>
-                                <button asp-action="UpdOrder" asp-route-orderId="@order.Id"  disabled class="btn btn-outline-success"> Update</button>
+                                <button asp-action="UpdOrder" asp-route-orderId="@order.Id" disabled class="btn btn-outline-success"> Update</button>
                             </td>
                             <td>
-                                <button  asp-action="DelOrder" asp-route-orderId="@order.Id" disabled class="btn btn-outline-danger"> × Remove</button>
+                                <button asp-action="DelOrder" asp-route-orderId="@order.Id" disabled class="btn btn-outline-danger"> × Remove</button>
                             </td>
                         }
                         else
@@ -41,15 +41,14 @@
                                 <a asp-action="UpdOrder" asp-route-orderId="@order.Id" class="btn btn-outline-success"> Update</a>
                             </td>
                             <td>
-                                <a  asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
+                                <a asp-action="DelOrder" asp-route-orderId="@order.Id" class="btn btn-outline-danger"> × Remove</a>
                             </td>
                         }
-                        
+
                     </tr>
                 }
-
             }
-           
+
 
             </thead>
 
@@ -59,13 +58,18 @@
         </table>
         <hr>
         <h4 class="text-muted" style="text-align: left">Total PRICE: @Html.DisplayFor(modelItem => modelItem.TotalPrice) $</h4>
-        
+
         <form method="post">
-        @if (Model.IsUnconfOrdersAvailable)
-        {
-            <button type="submit" asp-action="ConfirmOrders" class="btn btn-primary"><h4>Confirm order</h4></button>
-        }
+            @if (Model.IsUnconfOrdersAvailable)
+            {
+                <button type="submit" asp-route-ShoppingListViewModel=@Model asp-action="ConfirmOrders" id="confirmOrderButton" class="btn btn-primary">
+                    <h4>Confirm order</h4>
+                </button>
+            }
         </form>
     </div>
 
 </div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/order.js"></script>

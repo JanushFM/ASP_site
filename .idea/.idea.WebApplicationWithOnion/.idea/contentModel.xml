@@ -103,6 +103,9 @@
           <e p="EmailSender.cs" t="Include" />
           <e p="IMailSender.cs" t="Include" />
         </e>
+        <e p="Hubs" t="Include">
+          <e p="OrderHub.cs" t="Include" />
+        </e>
         <e p="log" t="Include">
           <e p="internal-nlog.txt" t="Include" />
         </e>
@@ -168,6 +171,7 @@
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="TestSignal.cshtml" t="Include" />
           </e>
           <e p="Error" t="Include">
             <e p="Index.cshtml" t="Include" />
@@ -233,6 +237,15 @@
             <e p="Vincent_van_Gogh__portrait.jpg" t="Include" />
           </e>
           <e p="js" t="Include">
+            <e p="order.js" t="Include" />
+            <e p="signalr" t="Include">
+              <e p="dist" t="Include">
+                <e p="browser" t="Include">
+                  <e p="signalr.js" t="Include" />
+                  <e p="signalr.min.js" t="Include" />
+                </e>
+              </e>
+            </e>
             <e p="site.js" t="Include" />
           </e>
           <e p="lib" t="Include">
