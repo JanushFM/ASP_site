@@ -36,20 +36,20 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <a class="dropdown-item" asp-action="ListRoles" asp-controller="Administration">
-                                        <h5>Manage Roles</h5>
-                                    </a>
-                                    <a class="dropdown-item" asp-action="ListUsers" asp-controller="Administration">
-                                        <h5>Manage Users</h5>
-                                    </a>
-                                    <a class="dropdown-item" asp-action="ManageOrders" asp-controller="Administration">
-                                        <h5>Manage Orders</h5>
-                                    </a>
                                     <a class="dropdown-item" asp-action="ManagePaintings" asp-controller="ShopItems">
                                         <h5>Manage Paintings</h5>
                                     </a>
                                     <a class="dropdown-item" asp-action="ManageArtists" asp-controller="ShopItems">
                                         <h5>Manage Artists</h5>
+                                    </a>
+                                    <a class="dropdown-item" asp-action="ManageOrders" asp-controller="Administration">
+                                        <h5>Manage Orders</h5>
+                                    </a>
+                                    <a class="dropdown-item" asp-action="ListUsers" asp-controller="Administration">
+                                        <h5>Manage Users</h5>
+                                    </a>
+                                    <a class="dropdown-item" asp-action="ListRoles" asp-controller="Administration">
+                                        <h5>Manage Roles</h5>
                                     </a>
                                 }
                                 else if (User.IsInRole("Sailor"))

@@ -140,12 +140,12 @@ namespace WebApplication.Migrations
                     b.Property<string>("BigDescription")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasMaxLength(400);
+                        .HasMaxLength(4000);
 
                     b.Property<string>("SmallDescription")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasMaxLength(200);
+                        .HasMaxLength(600);
 
                     b.HasKey("Id");
 
@@ -279,8 +279,7 @@ namespace WebApplication.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("PaintingId")
-                        .IsUnique();
+                    b.HasIndex("PaintingId");
 
                     b.ToTable("Order");
                 });
@@ -330,7 +329,7 @@ namespace WebApplication.Migrations
                             ImageName = "mono_lisa.jpg",
                             Name = "Mona Lisa",
                             NumberAvailable = 10,
-                            Price = 146579
+                            Price = 1465
                         },
                         new
                         {
@@ -340,7 +339,7 @@ namespace WebApplication.Migrations
                             ImageName = "Starry_Night.jpg",
                             Name = "Starry Night",
                             NumberAvailable = 6,
-                            Price = 46565
+                            Price = 4656
                         });
                 });
 
@@ -488,8 +487,8 @@ namespace WebApplication.Migrations
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("Domain.Entities.Painting", "Painting")
-                        .WithOne()
-                        .HasForeignKey("Domain.Entities.Order", "PaintingId")
+                        .WithMany()
+                        .HasForeignKey("PaintingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

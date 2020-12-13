@@ -25,7 +25,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
             <a asp-action="ListRoles" class="btn btn-primary">Cancel</a>
         </div>
     </div>
@@ -50,7 +50,7 @@
         <div class="card-footer">
              <a asp-controller="Administration" asp-action="EditUsersInRole"
                    asp-route-roleId="@Model.Id" class="btn btn-primary">
-                    Add or remove users from this role
+                    Manage users of this role
                 </a>
         </div>
     </div>

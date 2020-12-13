@@ -24,7 +24,7 @@ namespace Domain.Maps
                     Id = 1,
                     Name = "Mona Lisa",
                     ImageName = "mono_lisa.jpg",
-                    Price = 146579,
+                    Price = 1465,
                     NumberAvailable = 10,
                     ArtistId = 2,
                     DescriptionId = 3
@@ -34,7 +34,7 @@ namespace Domain.Maps
                     Id = 2,
                     Name = "Starry Night",
                     ImageName = "Starry_Night.jpg",
-                    Price = 46565,
+                    Price = 4656,
                     NumberAvailable = 6,
                     ArtistId = 1,
                     DescriptionId = 4

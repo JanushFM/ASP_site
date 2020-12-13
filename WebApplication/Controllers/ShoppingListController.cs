@@ -34,18 +34,31 @@ namespace WebApplication.Controllers
         }
 
 
-        [Authorize(Roles = "User")]
         public async Task<IActionResult> Orders()
         {
             var user = await _userManager.GetUserAsync(User);
             var totalPrice = await _orderRepository.LoadOrdersWithArtistId(user.Id);
 
-            var shoppingList = new ShoppingListViewModel
+            ShoppingListViewModel shoppingList;
+            if (user.Orders == null)
             {
-                Orders = user.Orders,
-                TotalPrice = totalPrice,
-                IsUnconfOrdersAvailable = IsUnconfOrdersAvlb(user.Orders)
-            };
+                shoppingList = new ShoppingListViewModel
+                {
+                    Orders = new List<Order>(),
+                    TotalPrice = totalPrice,
+                    IsUnconfOrdersAvailable = false
+                };
+            }
+            else
+            {
+                shoppingList = new ShoppingListViewModel
+                {
+                    Orders = user.Orders,
+                    TotalPrice = totalPrice,
+                    IsUnconfOrdersAvailable = IsUnconfOrdersAvlb(user.Orders)
+                };
+            }
+
             return View(shoppingList);
         }
 
@@ -75,8 +88,8 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "This page is unavailable.";
                 return View("NotFound");
             }
-            
-            
+
+
             await _paintingRepository.UpdNumPaintings(order.PaintingId,
                 updatedOrder.Amount - order.Amount);
 
@@ -88,7 +101,7 @@ namespace WebApplication.Controllers
             await _orderRepository.Update(order);
             return RedirectToAction("Orders");
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> DelOrder(int orderId)
         {
@@ -132,8 +145,9 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "You have to assign phone number before confirming order !";
                 return View("NotFound");
             }
+
             var ordersToConfirm = GetListOrdersToConfirm(user.Orders);
-            var jsonOrdersToConfirm = JsonConvert.SerializeObject(ordersToConfirm);    
+            var jsonOrdersToConfirm = JsonConvert.SerializeObject(ordersToConfirm);
 
             await _orderHub.Clients.All.SendAsync("ReceiveMessage", jsonOrdersToConfirm);
 
@@ -146,7 +160,7 @@ namespace WebApplication.Controllers
             return orders.Any(order => !order.IsConfirmedByUser);
         }
 
-        
+
         public List<Order> GetListOrdersToConfirm(List<Order> orders)
         {
             return orders.Where(order => !order.IsConfirmedByUser).ToList();

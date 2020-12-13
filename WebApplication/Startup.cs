@@ -51,14 +51,12 @@ namespace WebApplication
                     options.ClientId = Configuration["Settings:GoogleClientId"];
                     options.ClientSecret = Configuration["Settings:GoogleClientSecret"];
                 });
-            services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
-            services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));
-            services.AddScoped(typeof(IDescriptionRepository), typeof(DescriptionRepository));
-            services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
-            services.AddScoped(typeof(IPaintingRepository), typeof(PaintingRepository));
-            services.AddTransient<IMailSender, EmailSender.EmailSender>();
-
-
+            
+            services.AddTransient(typeof(IArtistRepository), typeof(ArtistRepository));
+            services.AddTransient(typeof(IDescriptionRepository), typeof(DescriptionRepository));
+            services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
+            services.AddTransient(typeof(IPaintingRepository), typeof(PaintingRepository));
+            services.AddSingleton<IMailSender, EmailSender.EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

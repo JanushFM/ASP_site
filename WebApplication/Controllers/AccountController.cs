@@ -5,7 +5,6 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using WebApplication.EmailSender;
 using WebApplication.ViewModels;
 
@@ -37,7 +36,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Copy data from RegisterViewModel to IdentityUser
+               
                 var user = new AppUser
                 {
                     UserName = model.Email,
@@ -47,8 +46,7 @@ namespace WebApplication.Controllers
                 // Store user data in AspNetUsers database table
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                // If user is successfully created, sign-in the user using
-                // SignInManager and redirect to index action of HomeController
+                
                 if (result.Succeeded)
                 {
                    
@@ -78,8 +76,7 @@ namespace WebApplication.Controllers
                     return RedirectToAction("index", "Artists");
                 }
 
-                // If there are any errors, add them to the ModelState object
-                // which will be displayed by the validation summary tag helper
+                
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -251,12 +248,12 @@ namespace WebApplication.Controllers
             // a local account
             else
             {
-                // Get the email claim value
+                
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
                 if (email != null)
                 {
-                    // Create a new user without password if we do not have a user already
+                    
                     var user = await _userManager.FindByEmailAsync(email);
 
                     if (user == null)
@@ -291,11 +288,6 @@ namespace WebApplication.Controllers
 
                     return LocalRedirect(returnUrl);
                 }
-
-                // If we cannot find the user email we cannot continue
-                ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
-                ViewBag.ErrorMessage = "Please contact support on Pragim@PragimTech.com";
-
                 return View("Error");
             }
         }

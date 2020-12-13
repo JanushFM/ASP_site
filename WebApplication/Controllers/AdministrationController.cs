@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -31,6 +27,7 @@ namespace WebApplication.Controllers
             _orderRepository = orderRepository;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ListUsers()
         {
@@ -38,19 +35,20 @@ namespace WebApplication.Controllers
             return View(users);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateRole()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // We just need to specify a unique role name to create a new role
+                
                 IdentityRole identityRole = new IdentityRole
                 {
                     Name = model.RoleName
@@ -73,6 +71,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult ListRoles()
         {
@@ -81,10 +80,11 @@ namespace WebApplication.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
-            // Find the role by Role ID
+            
             var role = await _roleManager.FindByIdAsync(id);
 
             if (role == null)
@@ -102,9 +102,7 @@ namespace WebApplication.Controllers
             // Retrieve all the Users
             foreach (var user in _userManager.Users)
             {
-                // If the user is in this role, add the username to
-                // Users property of EditRoleViewModel. This model
-                // object is then passed to the view for display
+             
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
                     model.Users.Add(user.UserName);
@@ -114,7 +112,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
-// This action responds to HttpPost and receives EditRoleViewModel
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
         {
@@ -146,6 +144,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string roleId)
         {
@@ -184,6 +183,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string roleId)
         {
@@ -225,6 +225,7 @@ namespace WebApplication.Controllers
             return RedirectToAction("EditRole", new {Id = roleId});
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
@@ -236,7 +237,7 @@ namespace WebApplication.Controllers
                 return View("NotFound");
             }
 
-            // GetRolesAsync returns the list of user Roles
+            
             var userRoles = await _userManager.GetRolesAsync(user);
 
             var model = new EditUserViewModel
@@ -251,6 +252,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserViewModel model)
         {
@@ -281,6 +283,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
@@ -309,6 +312,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> DeleteRole(string id)
         {
@@ -337,6 +341,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string userId)
         {
@@ -375,6 +380,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult>
             ManageUserRoles(List<UserRolesViewModel> model, string userId)
@@ -407,7 +413,6 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("EditUser", new {Id = userId});
         }
-
         
         [Authorize(Roles = "Sailor,Admin")] // at least sailor or Admin
         public async Task<IActionResult> ManageOrders()

@@ -42,7 +42,7 @@ namespace WebApplication.Controllers
             return View(artist);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> BuyPainting(int? id)
         {

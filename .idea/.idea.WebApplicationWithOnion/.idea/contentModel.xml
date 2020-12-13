@@ -11,7 +11,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Interfaces" t="Include">
           <e p="IRepositories" t="Include">
-            <e p="IAppUserRepository.cs" t="Include" />
             <e p="IArtistRepository.cs" t="Include" />
             <e p="IDescriptionRepository.cs" t="Include" />
             <e p="IGenericRepository.cs" t="Include" />
@@ -45,7 +44,6 @@
           <e p="ArtistMap.cs" t="Include" />
           <e p="DescriptionMap.cs" t="Include" />
           <e p="IEntityBuilder.cs" t="Include" />
-          <e p="MovieMap.cs" t="Include" />
           <e p="PaintingMap.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -75,11 +73,9 @@
         </e>
         <e p="Persistence.csproj" t="IncludeRecursive" />
         <e p="Repositories" t="Include">
-          <e p="AppUserRepository.cs" t="Include" />
           <e p="ArtistRepository.cs" t="Include" />
           <e p="DescriptionRepository.cs" t="Include" />
           <e p="GenericRepository.cs" t="Include" />
-          <e p="MovieRepository.cs" t="Include" />
           <e p="OrderRepository.cs" t="Include" />
           <e p="PaintingRepository.cs" t="Include" />
         </e>
@@ -94,7 +90,6 @@
           <e p="AdministrationController.cs" t="Include" />
           <e p="ArtistsController.cs" t="Include" />
           <e p="ErrorController.cs" t="Include" />
-          <e p="MoviesController.cs" t="Include" />
           <e p="PaintingsController.cs" t="Include" />
           <e p="ShopItemsController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
@@ -110,8 +105,10 @@
           <e p="internal-nlog.txt" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201210191744_InitialCreate.cs" t="Include" />
-          <e p="20201210191744_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201213124720_InitialCreate.cs" t="Include" />
+          <e p="20201213124720_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201213130810_deletedUniqueConstraintPainting.cs" t="Include" />
+          <e p="20201213130810_deletedUniqueConstraintPainting.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -176,14 +173,6 @@
           <e p="Error" t="Include">
             <e p="Index.cshtml" t="Include" />
           </e>
-          <e p="Movies" t="Include">
-            <e p="Create.cshtml" t="Include" />
-            <e p="Delete.cshtml" t="Include" />
-            <e p="Details.cshtml" t="Include" />
-            <e p="Edit.cshtml" t="Include" />
-            <e p="Index.cshtml" t="Include" />
-            <e p="Keys.cshtml" t="Include" />
-          </e>
           <e p="Paintings" t="Include">
             <e p="Index.cshtml" t="Include" />
           </e>
@@ -216,12 +205,16 @@
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
+            <e p="139f6ae0-213d-42b4-b47b-732b552d4e7e_Starry_Night.jpg" t="Include" />
             <e p="1f55d094-0fe6-4c26-b101-7a5ba8d0848b_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="2ccc0647-9fde-4dbf-a38a-5e92ccdb67c6_Access_Denied.jpg" t="Include" />
+            <e p="34829eb5-ec44-48d4-9c9d-86bc3248e726_703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
             <e p="363efb8c-1ebb-46fe-873a-2a55bd7be1e3_El_jardín_de_las_Delicias,_de_El_Bosco.jpg" t="Include" />
             <e p="50e0ff96-67fa-4f7e-9156-6b5df4b05b69_b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />
+            <e p="5284db94-8194-4210-bc3d-92f9fd88e2af_mono_lisa.jpg" t="Include" />
             <e p="703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
             <e p="8e295d7c-717a-44c5-8b6e-72a24c4fa690_e4fe6a45-1bdd-4234-b6c6-5fbf62d6efbc_Vincent_van_Gogh__portrait.jpg" t="Include" />
+            <e p="a471949e-aa9a-4cd4-85ef-b375d2b7fe6d_703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
             <e p="Access_Denied.jpg" t="Include" />
             <e p="ad9fadb3-09c9-46d2-9124-0c88269798cb_mono_lisa.jpg" t="Include" />
             <e p="b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />

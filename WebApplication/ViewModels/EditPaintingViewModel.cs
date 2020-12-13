@@ -6,15 +6,16 @@ namespace WebApplication.ViewModels
 {
     public class EditPaintingViewModel
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
         
         [StringLength(120, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
         
-        [Required(ErrorMessage = "Please choose  image")]  
         [Display(Name = "Picture")]
         public IFormFile Image { get; set; }
+        
+        public string PrevImageName { get; set; }
         
         public Description Description { get; set; }
         

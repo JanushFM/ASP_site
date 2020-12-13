@@ -24,17 +24,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5276e54-c536-4a69-a751-53cf0ed86396" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApplication/Views/Movies/Keys.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationWithOnion/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/MoviesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/MoviesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/EmailSender/EmailSender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/EmailSender/EmailSender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Maps/PaintingMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Maps/PaintingMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Persistence/Contexts/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Persistence/Contexts/ApplicationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/ErrorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/ErrorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/MoviesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/PaintingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/PaintingsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Migrations/20201210191744_InitialCreate.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Migrations/20201210191744_InitialCreate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Migrations/ApplicationContextModelSnapshot.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication/MvcMovie.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/MvcMovie.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ViewModels/CreatePaintingViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/ViewModels/CreatePaintingViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ViewModels/EditPaintingViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/ViewModels/EditPaintingViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Account/Settings.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Account/Settings.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUser.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUser.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUsersInRole.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/EditUsersInRole.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/ListRoles.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ListRoles.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/ListUsers.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ListUsers.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Administration/ManageUserRoles.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Administration/ManageUserRoles.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Create.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Delete.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Details.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Edit.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Index.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Movies/Keys.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/Views/ShopItems/EditPainting.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/Views/ShopItems/EditPainting.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/WebApplication.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication/log/internal-nlog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication/log/internal-nlog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,46 +90,31 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3C71E561-E9FC-4AC9-B8F1-DDFEC6635628/15/MethodInfoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/802FD416-8C36-4EE6-B756-5FCF5D139902/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26B8D1E2-4F44-4EA5-B82B-160B88995F25/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/51C9F33F-28A2-41BF-ADE4-C43F06BB9337/1/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/38/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3152A975-472F-4B35-B978-712B757F8C40/4e/eb2b3151/AzureAppConfigurationProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/592F1CE3-7953-46CD-B447-620FB62E4EA5/3/IdentityUser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D5EDF430-AB5A-4412-A0B9-E75F3C32EB0A/A/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D5EDF430-AB5A-4412-A0B9-E75F3C32EB0A/c8/1bc6d63b/EntityFrameworkQueryableExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/PaintingsController.cs" />
-        <option value="$PROJECT_DIR$/Domain/Entities/Order.cs" />
-        <option value="$PROJECT_DIR$/Persistence/Repositories/GenericRepository.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/ViewModels/EditPaintingViewModel.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditPainting.cshtml" />
-        <option value="$PROJECT_DIR$/Application/Interfaces/IRepositories/IGenericRepository.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/CreatePainting.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/ViewModels/CreatePaintingViewModel.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ManageArtists.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditArtist.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/ViewModels/EditArtistViewModel.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/CreateArtist.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/ViewModels/CreateArtistViewModel.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ManagePaintings.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/CreateArtist.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Paintings/Index.cshtml" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/ShopItems.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" />
         <option value="$PROJECT_DIR$/Domain/Entities/Description.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Painting.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Artist.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Error/Index.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Shared/Error.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/nlog.config" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/ErrorController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Properties/launchSettings.json" />
         <option value="$PROJECT_DIR$/WebApplication/EmailSender/IMailSender.cs" />
         <option value="$PROJECT_DIR$/ConsoleApplication1/Program.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Hubs/ChatHub.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Hubs/OrderHubs.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Controllers/ArtistsController.cs" />
@@ -116,9 +124,7 @@
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ManageOrders.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/ShoppingList/Orders.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/wwwroot/js/order.js" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" />
         <option value="$PROJECT_DIR$/Persistence/Repositories/OrderRepository.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Hubs/IOrderHubContext.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Hubs/OrderHub.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Movies/Keys.razor" />
@@ -126,8 +132,27 @@
         <option value="$PROJECT_DIR$/WebApplication/Views/Movies/Keys.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Program.cs" />
         <option value="$PROJECT_DIR$/WebApplication/appsettings.json" />
-        <option value="$PROJECT_DIR$/WebApplication/Startup.cs" />
         <option value="$PROJECT_DIR$/WebApplication/EmailSender/EmailSender.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/ErrorController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/PaintingsController.cs" />
+        <option value="$PROJECT_DIR$/Domain/Maps/PaintingMap.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs" />
+        <option value="$PROJECT_DIR$/Persistence/Contexts/ApplicationContext.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/ViewModels/CreatePaintingViewModel.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/ViewModels/EditPaintingViewModel.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/ShopItems/EditPainting.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Shared/_Layout.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ListUsers.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ListRoles.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Account/Settings.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditUser.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditUsersInRole.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Views/Administration/ManageUserRoles.cshtml" />
+        <option value="$PROJECT_DIR$/WebApplication/Startup.cs" />
       </list>
     </option>
   </component>
@@ -240,6 +265,7 @@
       <workItem from="1607773585442" duration="14651000" />
       <workItem from="1607794573914" duration="5899000" />
       <workItem from="1607807878117" duration="1699000" />
+      <workItem from="1607861855762" duration="8066000" />
     </task>
     <servers />
   </component>
@@ -276,10 +302,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="343" y="87" width="1089" height="737" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607710861225">
+    <state x="343" y="87" width="1089" height="737" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607862637163">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="343" y="87" width="1089" height="737" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607710861225" />
+    <state x="343" y="87" width="1089" height="737" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1607862637163" />
     <state x="663" y="166" key="#xdebugger.XInspectDialog" timestamp="1607707246072">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -296,86 +322,86 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="16" y="375" width="1350" height="638" maximized="true" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1607628617581" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1607809588216">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1607870551664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607809588216" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1607809588215">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607870551664" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1607870551664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607809588215" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1607809588215">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1607870551664" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1607870551664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607809588215" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1607809588216">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1607870551664" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1607870551664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607809588216" />
-    <state width="1493" height="442" key="GridCell.Tab.1.bottom" timestamp="1607807850877">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1607870551664" />
+    <state width="1493" height="408" key="GridCell.Tab.1.bottom" timestamp="1607865698953">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607807850877" />
-    <state width="1493" height="442" key="GridCell.Tab.1.center" timestamp="1607807850877">
+    <state width="1493" height="408" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607865698953" />
+    <state width="1493" height="408" key="GridCell.Tab.1.center" timestamp="1607865698952">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607807850877" />
-    <state width="1493" height="442" key="GridCell.Tab.1.left" timestamp="1607807850876">
+    <state width="1493" height="408" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1607865698952" />
+    <state width="1493" height="408" key="GridCell.Tab.1.left" timestamp="1607865698951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607807850876" />
-    <state width="1493" height="442" key="GridCell.Tab.1.right" timestamp="1607807850877">
+    <state width="1493" height="408" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1607865698951" />
+    <state width="1493" height="408" key="GridCell.Tab.1.right" timestamp="1607865698952">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607807850877" />
-    <state width="1493" height="442" key="GridCell.Tab.2.bottom" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1607865698952" />
+    <state width="1493" height="408" key="GridCell.Tab.2.bottom" timestamp="1607865698954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.2.center" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607865698954" />
+    <state width="1493" height="408" key="GridCell.Tab.2.center" timestamp="1607865698953">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.2.left" timestamp="1607807850877">
+    <state width="1493" height="408" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1607865698953" />
+    <state width="1493" height="408" key="GridCell.Tab.2.left" timestamp="1607865698953">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1607807850877" />
-    <state width="1493" height="442" key="GridCell.Tab.2.right" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1607865698953" />
+    <state width="1493" height="408" key="GridCell.Tab.2.right" timestamp="1607865698953">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.3.bottom" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1607865698953" />
+    <state width="1493" height="408" key="GridCell.Tab.3.bottom" timestamp="1607865698955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.3.center" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607865698955" />
+    <state width="1493" height="408" key="GridCell.Tab.3.center" timestamp="1607865698954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.3.left" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1607865698954" />
+    <state width="1493" height="408" key="GridCell.Tab.3.left" timestamp="1607865698954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.3.right" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1607865698954" />
+    <state width="1493" height="408" key="GridCell.Tab.3.right" timestamp="1607865698954">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.4.bottom" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1607865698954" />
+    <state width="1493" height="408" key="GridCell.Tab.4.bottom" timestamp="1607865698956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.4.center" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1607865698956" />
+    <state width="1493" height="408" key="GridCell.Tab.4.center" timestamp="1607865698955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.4.left" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1607865698955" />
+    <state width="1493" height="408" key="GridCell.Tab.4.left" timestamp="1607865698955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
-    <state width="1493" height="442" key="GridCell.Tab.4.right" timestamp="1607807850878">
+    <state width="1493" height="408" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1607865698955" />
+    <state width="1493" height="408" key="GridCell.Tab.4.right" timestamp="1607865698955">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="442" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1607807850878" />
+    <state width="1493" height="408" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1607865698955" />
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size" timestamp="1607709573687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -396,10 +422,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1607531883864" />
-    <state x="675" y="184" width="793" height="592" key="find.popup" timestamp="1607809304667">
+    <state x="675" y="184" width="793" height="592" key="find.popup" timestamp="1607869805874">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="675" y="184" width="793" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607809304667" />
+    <state x="675" y="184" width="793" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607869805874" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1607616369281">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -413,108 +439,110 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs</url>
-          <line>212</line>
-          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\AccountController.cs" initialLine="157">
-            <startOffsets>
-              <option value="7059" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7201" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs</url>
-          <line>69</line>
+          <line>82</line>
           <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShoppingListController.cs" initialLine="64">
             <startOffsets>
-              <option value="2269" />
+              <option value="2651" />
             </startOffsets>
             <endOffsets>
-              <option value="2318" />
+              <option value="2700" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs</url>
-          <line>54</line>
+          <line>67</line>
           <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShoppingListController.cs" initialLine="49">
             <startOffsets>
-              <option value="1817" />
+              <option value="2199" />
             </startOffsets>
             <endOffsets>
-              <option value="1866" />
+              <option value="2248" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication/Startup.cs</url>
-          <line>90</line>
-          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Startup.cs" initialLine="70">
-            <startOffsets>
-              <option value="3479" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3493" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication/Startup.cs</url>
-          <line>89</line>
-          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Startup.cs" initialLine="69">
-            <startOffsets>
-              <option value="3428" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3462" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication/EmailSender/EmailSender.cs</url>
-          <line>49</line>
+          <line>48</line>
           <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\EmailSender\EmailSender.cs" initialLine="49">
             <startOffsets>
-              <option value="1577" />
+              <option value="1520" />
             </startOffsets>
             <endOffsets>
-              <option value="1671" />
+              <option value="1614" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs</url>
-          <line>140</line>
-          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShoppingListController.cs" initialLine="140">
+          <url>file://$PROJECT_DIR$/Persistence/Repositories/OrderRepository.cs</url>
+          <line>27</line>
+          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\Persistence\Repositories\OrderRepository.cs" initialLine="27">
             <startOffsets>
-              <option value="4869" />
+              <option value="785" />
+              <option value="839" />
             </startOffsets>
             <endOffsets>
-              <option value="4903" />
+              <option value="916" />
+              <option value="849" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="63" />
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShoppingListController.cs</url>
-          <line>139</line>
-          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShoppingListController.cs" initialLine="140">
+          <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs</url>
+          <line>99</line>
+          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShopItemsController.cs" initialLine="98">
             <startOffsets>
-              <option value="4802" />
+              <option value="3397" />
             </startOffsets>
             <endOffsets>
-              <option value="4856" />
+              <option value="3420" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="65" />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs</url>
+          <line>60</line>
+          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShopItemsController.cs" initialLine="60">
+            <startOffsets>
+              <option value="1936" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2000" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WebApplication/Controllers/ShopItemsController.cs</url>
+          <line>58</line>
+          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Controllers\ShopItemsController.cs" initialLine="58">
+            <startOffsets>
+              <option value="1882" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1905" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WebApplication/Views/Administration/ListUsers.cshtml</url>
+          <properties documentPath="C:\Users\yanus\RiderProjects\WebApplicationWithOnion\WebApplication\Views\Administration\ListUsers.cshtml" initialLine="0" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/WebApplication/wwwroot/js/order.js</url>

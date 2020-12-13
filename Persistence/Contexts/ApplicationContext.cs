@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Maps;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +19,6 @@ namespace Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            new MovieMap(modelBuilder.Entity<Movie>());
             new DescriptionMap(modelBuilder.Entity<Description>());
             new ArtistMap(modelBuilder.Entity<Artist>());
             new PaintingMap(modelBuilder.Entity<Painting>());
@@ -38,10 +36,6 @@ namespace Persistence.Contexts
                 .WithOne()
                 .HasForeignKey<Painting>(p => p.DescriptionId);
             
-            modelBuilder.Entity<Order>()
-                .HasOne(b => b.Painting)
-                .WithOne()
-                .HasForeignKey<Order>(p => p.PaintingId);
             
             // foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             // {

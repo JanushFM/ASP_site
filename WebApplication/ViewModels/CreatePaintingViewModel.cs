@@ -7,7 +7,7 @@ namespace WebApplication.ViewModels
 {
     public class CreatePaintingViewModel
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
         
         [StringLength(120, MinimumLength = 3)]
         [Required]

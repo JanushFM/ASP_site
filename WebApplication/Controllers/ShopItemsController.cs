@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
             
             if (ModelState.IsValid)
             {
-                var imageUniqueName = UploadedFile(newPaintingVM.Image);
+                var imageUniqueName = CreteUniqueImageName(newPaintingVM.Image);
                 var newPainting = new Painting
                 {
                     ArtistId = newPaintingVM.SelectedArtistId,
@@ -88,7 +88,8 @@ namespace WebApplication.Controllers
                 Description = painting.Description,
                 Name = painting.Name,
                 NumberAvailable = painting.NumberAvailable,
-                Price = painting.Price
+                Price = painting.Price,
+                PrevImageName = painting.ImageName
             };
             return View(editPaintingViewModel);
         }
@@ -98,15 +99,20 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                string imageUniqueName = UploadedFile(updPaintingVM.Image);
                 var painting = await _paintingRepository.GetById(updPaintingVM.Id);
                 painting.Name = updPaintingVM.Name;
-                painting.ImageName = imageUniqueName;
                 painting.Price = updPaintingVM.Price;
                 painting.NumberAvailable = updPaintingVM.NumberAvailable;
                 painting.Description.BigDescription = updPaintingVM.Description.BigDescription;
                 painting.Description.SmallDescription = updPaintingVM.Description.SmallDescription;
-
+                
+                var imageUniqueName = CreteUniqueImageName(updPaintingVM.Image);
+                
+                if (imageUniqueName != null)
+                {
+                    painting.ImageName = imageUniqueName;
+                }
+                
                 await _paintingRepository.Update(painting);
                 return RedirectToAction("ManagePaintings");
             }
@@ -115,7 +121,7 @@ namespace WebApplication.Controllers
         }
 
         //https://www.c-sharpcorner.com/article/upload-and-display-image-in-asp-net-core-3-1/
-        private string UploadedFile(IFormFile image)
+        private string CreteUniqueImageName(IFormFile image)
         {
             string uniqueFileName = null;
 
@@ -162,7 +168,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var imageUniqueName = UploadedFile(newArtistVM.Image);
+                var imageUniqueName = CreteUniqueImageName(newArtistVM.Image);
                 var artist = new Artist
                 {
                     Name = newArtistVM.Name,
@@ -195,7 +201,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> EditArtist(EditArtistViewModel updArtistVM)
         {
-            var imageUniqueName = UploadedFile(updArtistVM.Image);
+            var imageUniqueName = CreteUniqueImageName(updArtistVM.Image);
             if (ModelState.IsValid)
             {
                 var artist = await _artistRepository.GetById(updArtistVM.Id);
