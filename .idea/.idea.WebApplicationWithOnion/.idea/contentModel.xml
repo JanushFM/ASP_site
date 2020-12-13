@@ -182,6 +182,7 @@
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="Keys.cshtml" t="Include" />
           </e>
           <e p="Paintings" t="Include">
             <e p="Index.cshtml" t="Include" />

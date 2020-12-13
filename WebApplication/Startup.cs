@@ -48,8 +48,8 @@ namespace WebApplication
             services.AddAuthentication().
                 AddGoogle(options =>
                 {
-                    options.ClientId = Configuration["GoogleClientId"];
-                    options.ClientSecret = Configuration["GoogleClientSecret"];
+                    options.ClientId = Configuration["Settings:GoogleClientId"];
+                    options.ClientSecret = Configuration["Settings:GoogleClientSecret"];
                 });
             services.AddScoped(typeof(IMovieRepository), typeof(MovieRepository));
             services.AddScoped(typeof(IArtistRepository), typeof(ArtistRepository));

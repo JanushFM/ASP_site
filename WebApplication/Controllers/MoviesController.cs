@@ -130,6 +130,11 @@ namespace WebApplication.Controllers
             await _movieRepository.Delete(movie);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Keys()
+        {
+            return View();
+        }
         
     }
 }

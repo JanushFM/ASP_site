@@ -7,7 +7,6 @@ namespace WebApplication.EmailSender
 {
     public class SmtpOptions
     {
-        public const string SectionName = "SmtpOptions";
         public string Username { get; set; }
         public string Password { get; set; }
         public string Host { get; set; }
@@ -23,9 +22,9 @@ namespace WebApplication.EmailSender
 
         public static SmtpOptions FromConfiguration(IConfiguration configuration)
         {
-            var userName = configuration["SmtpUsername"];
-            var password = configuration["SmtpPassword"];
-            var host = configuration["SmtpHost"];
+            var userName = configuration["Settings:SmtpUsername"];
+            var password = configuration["Settings:SmtpPassword"];
+            var host = configuration["Settings:SmtpHost"];
             var port = 25;
             return new SmtpOptions(userName, password, host, port);
         }
