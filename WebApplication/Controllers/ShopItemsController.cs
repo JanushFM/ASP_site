@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using WebApplication.Helpers;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -16,20 +16,20 @@ namespace WebApplication.Controllers
     public class ShopItemsController : Controller
     {
         private readonly IPaintingRepository _paintingRepository;
-        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IArtistRepository _artistRepository;
+        private readonly AzureStorageConfig _storageConfig;
 
         public ShopItemsController(
             IPaintingRepository paintingRepository,
-            IWebHostEnvironment hostEnvironment,
-            IArtistRepository artistRepository)
+            IArtistRepository artistRepository,
+            IOptions<AzureStorageConfig> storageConfig)
         {
             _paintingRepository = paintingRepository;
-            _hostEnvironment = hostEnvironment;
             _artistRepository = artistRepository;
+            _storageConfig = storageConfig.Value;
         }
-        
-        
+
+
         public async Task<IActionResult> ManagePaintings()
         {
             var paintings = await _paintingRepository.GetAll();
@@ -51,14 +51,8 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePainting(CreatePaintingViewModel newPaintingVM)
         {
-            // var errors = ModelState
-            //     .Where(x => x.Value.Errors.Count > 0)
-            //     .Select(x => new {x.Key, x.Value.Errors})
-            //     .ToArray();
-            
             if (ModelState.IsValid)
             {
-                var imageUniqueName = CreteUniqueImageName(newPaintingVM.Image);
                 var newPainting = new Painting
                 {
                     ArtistId = newPaintingVM.SelectedArtistId,
@@ -66,8 +60,16 @@ namespace WebApplication.Controllers
                     Name = newPaintingVM.Name,
                     Price = newPaintingVM.Price,
                     NumberAvailable = newPaintingVM.NumberAvailable,
-                    ImageName = imageUniqueName
                 };
+                
+                var blobUriResults = await LoadImageToAzure(newPaintingVM.Image);
+                if (blobUriResults != null)
+                {
+                    newPainting.ImageName = newPaintingVM.Image.Name;
+                    newPainting.ImageUri = blobUriResults.Item1;
+                    newPainting.ThumbnailUri = blobUriResults.Item2;
+                }
+                
                 await _paintingRepository.Add(newPainting);
                 return RedirectToAction("ManagePaintings");
             }
@@ -105,37 +107,22 @@ namespace WebApplication.Controllers
                 painting.NumberAvailable = updPaintingVM.NumberAvailable;
                 painting.Description.BigDescription = updPaintingVM.Description.BigDescription;
                 painting.Description.SmallDescription = updPaintingVM.Description.SmallDescription;
-                
-                var imageUniqueName = CreteUniqueImageName(updPaintingVM.Image);
-                
-                if (imageUniqueName != null)
+
+                var blobUriResults = await LoadImageToAzure(updPaintingVM.Image);
+                if (blobUriResults != null)
                 {
-                    painting.ImageName = imageUniqueName;
+                    painting.ImageName = updPaintingVM.Image.Name;
+                    painting.ImageUri = blobUriResults.Item1;
+                    painting.ThumbnailUri = blobUriResults.Item2;
                 }
-                
+
                 await _paintingRepository.Update(painting);
                 return RedirectToAction("ManagePaintings");
             }
 
             return View(updPaintingVM);
         }
-
-        //https://www.c-sharpcorner.com/article/upload-and-display-image-in-asp-net-core-3-1/
-        private string CreteUniqueImageName(IFormFile image)
-        {
-            string uniqueFileName = null;
-
-            if (image != null)
-            {
-                var uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid() + "_" + image.FileName;
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using var fileStream = new FileStream(filePath, FileMode.Create);
-                image.CopyTo(fileStream);
-            }
-
-            return uniqueFileName;
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> DeletePainting(int id)
@@ -144,7 +131,7 @@ namespace WebApplication.Controllers
             await _paintingRepository.Delete(painting);
             return RedirectToAction("ManagePaintings");
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> ManageArtists()
         {
@@ -153,11 +140,11 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public  IActionResult CreateArtist()
+        public IActionResult CreateArtist()
         {
             var artistVM = new EditArtistViewModel()
             {
-                Description = new Description()
+                Description = new Description(),
             };
 
             return View(artistVM);
@@ -168,16 +155,22 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var imageUniqueName = CreteUniqueImageName(newArtistVM.Image);
-                var artist = new Artist
+                var newArtist = new Artist
                 {
                     Name = newArtistVM.Name,
-                    ImageName = imageUniqueName,
                     Quote = newArtistVM.Quote,
-                    Description = newArtistVM.Description
+                    Description = newArtistVM.Description,
                 };
+                
+                var blobUriResults = await LoadImageToAzure(newArtistVM.Image);
+                if (blobUriResults != null)
+                {
+                    newArtist.ImageName = newArtistVM.Image.Name;
+                    newArtist.ImageUri = blobUriResults.Item1;
+                    newArtist.ThumbnailUri = blobUriResults.Item2;
+                }
 
-                await _artistRepository.Add(artist);
+                await _artistRepository.Add(newArtist);
                 return RedirectToAction("ManageArtists");
             }
 
@@ -201,20 +194,27 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> EditArtist(EditArtistViewModel updArtistVM)
         {
-            var imageUniqueName = CreteUniqueImageName(updArtistVM.Image);
             if (ModelState.IsValid)
             {
                 var artist = await _artistRepository.GetById(updArtistVM.Id);
                 artist.Name = updArtistVM.Name;
-                artist.ImageName = imageUniqueName;
                 artist.Quote = updArtistVM.Quote;
                 artist.Description.BigDescription = updArtistVM.Description.BigDescription;
                 artist.Description.SmallDescription = updArtistVM.Description.SmallDescription;
 
+                
+                var blobUriResults = await LoadImageToAzure(updArtistVM.Image);
+                if (blobUriResults != null)
+                {
+                    artist.ImageName = updArtistVM.Image.Name;
+                    artist.ImageUri = blobUriResults.Item1;
+                    artist.ThumbnailUri = blobUriResults.Item2;
+                }
+                
                 await _artistRepository.Update(artist);
                 return RedirectToAction("ManageArtists");
             }
-
+            
             return View(updArtistVM);
         }
 
@@ -225,15 +225,14 @@ namespace WebApplication.Controllers
             return RedirectToAction("ManageArtists");
         }
 
-        public List<bool> CreateListOfFalse(int capacity)
+        public async Task<Tuple<string, string>> LoadImageToAzure(IFormFile file)
         {
-            var list = new List<bool>();
-            for (var i = 0; i < capacity; i++)
+            if (StorageHelper.IsImage(file) && file.Length > 0)
             {
-                list.Add(false);
+                await using Stream stream = file.OpenReadStream();
+                return await StorageHelper.MyUploadFileToStorage(stream, file.FileName, _storageConfig);
             }
-
-            return list;
+            return null;
         }
     }
 }
