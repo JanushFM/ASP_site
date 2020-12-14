@@ -63,8 +63,7 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app,
-            IWebHostEnvironment env,
-            RoleManager<IdentityRole> roleManager)
+            IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -72,26 +71,10 @@ namespace WebApplication
             }    
             else if (env.IsProduction())
             {
-                var builder = new ConfigurationBuilder()
-                    .SetBasePath(env.ContentRootPath)
-                    .AddJsonFile("appsettings.json", 
-                        optional: false, 
-                        reloadOnChange: true)
-                    .AddEnvironmentVariables();
-
-                if (env.IsDevelopment())
-                {
-                    builder.AddUserSecrets<Startup>();
-                }
-
-                builder.AddUserSecrets<Startup>();
-                
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
-                
             }
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
