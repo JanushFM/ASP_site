@@ -53,9 +53,6 @@
             </e>
           </e>
         </e>
-        <e p="Seed" t="Include">
-          <e p="SeedRoles.cs" t="Include" />
-        </e>
       </e>
       <e p="Infrastructure" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
@@ -112,6 +109,7 @@
           <e p="ShopItemsController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
         </e>
+        <e p="DataInitializer.cs" t="Include" />
         <e p="Hubs" t="Include">
           <e p="OrderHub.cs" t="Include" />
         </e>
@@ -119,18 +117,8 @@
           <e p="internal-nlog.txt" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201213124720_InitialCreate.cs" t="Include" />
-          <e p="20201213124720_InitialCreate.Designer.cs" t="Include" />
-          <e p="20201213130810_deletedUniqueConstraintPainting.cs" t="Include" />
-          <e p="20201213130810_deletedUniqueConstraintPainting.Designer.cs" t="Include" />
-          <e p="20201213201510_SecondCreate.cs" t="Include" />
-          <e p="20201213201510_SecondCreate.Designer.cs" t="Include" />
-          <e p="20201213202322_ThirdCreate.cs" t="Include" />
-          <e p="20201213202322_ThirdCreate.Designer.cs" t="Include" />
-          <e p="20201213205755_FourthCreate.cs" t="Include" />
-          <e p="20201213205755_FourthCreate.Designer.cs" t="Include" />
-          <e p="20201213205855_FifthCreate.cs" t="Include" />
-          <e p="20201213205855_FifthCreate.Designer.cs" t="Include" />
+          <e p="20201214210525_InitialCreate.cs" t="Include" />
+          <e p="20201214210525_InitialCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">

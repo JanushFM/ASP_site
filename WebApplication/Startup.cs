@@ -1,6 +1,5 @@
 using Application.Interfaces.IRepositories;
 using Domain.Entities;
-using Domain.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -32,7 +31,7 @@ namespace WebApplication
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString(nameof(ApplicationContext)),
+                options.UseSqlServer(Configuration.GetConnectionString(nameof(ApplicationContext)),
                     b => b.MigrationsAssembly("WebApplication")));
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -96,8 +95,7 @@ namespace WebApplication
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-            SeedRoles.InitRoles(roleManager);
-            
+
             app.UseRouting();
 
             app.UseAuthorization();

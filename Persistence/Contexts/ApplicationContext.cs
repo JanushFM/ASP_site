@@ -8,9 +8,9 @@ namespace Persistence.Contexts
 {
     public class ApplicationContext : IdentityDbContext<AppUser>
     {
-        public ApplicationContext()
-        {
-        }
+        // public ApplicationContext()
+        // {
+        // }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -29,12 +29,14 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Artist>()
                 .HasOne(b => b.Description)
                 .WithOne()
-                .HasForeignKey<Artist>(p => p.DescriptionId);
+                .HasForeignKey<Artist>(p => p.DescriptionId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Painting>()
                 .HasOne(b => b.Description)
                 .WithOne()
-                .HasForeignKey<Painting>(p => p.DescriptionId);
+                .HasForeignKey<Painting>(p => p.DescriptionId)
+                .OnDelete(DeleteBehavior.NoAction);;
             
             
             // foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))

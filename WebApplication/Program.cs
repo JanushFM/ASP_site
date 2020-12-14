@@ -1,7 +1,11 @@
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Azure.Identity;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
@@ -11,12 +15,25 @@ namespace WebApplication
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            
+            try
+            {
+                var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                await DataInitializer.InitializeAsync(rolesManager);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Something goes wrong with data seeding");
+            }
+            await host.RunAsync();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                     webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
