@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
 using Persistence.Repositories;
-using WebApplication.EmailSender;
-using WebApplication.Helpers;
+using Services.Interfaces;
+using Services.Services;
 using WebApplication.Hubs;
 
 namespace WebApplication
@@ -58,7 +58,7 @@ namespace WebApplication
             services.AddTransient(typeof(IDescriptionRepository), typeof(DescriptionRepository));
             services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
             services.AddTransient(typeof(IPaintingRepository), typeof(PaintingRepository));
-            services.AddSingleton<IMailSender, EmailSender.EmailSender>();
+            services.AddSingleton<IMailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

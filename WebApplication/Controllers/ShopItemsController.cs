@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using WebApplication.Helpers;
+using Services.Services;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
