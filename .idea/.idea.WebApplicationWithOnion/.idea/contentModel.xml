@@ -98,6 +98,9 @@
           <e p="EmailSender.cs" t="Include" />
           <e p="IMailSender.cs" t="Include" />
         </e>
+        <e p="Helpers" t="Include">
+          <e p="StorageHelper.cs" t="Include" />
+        </e>
         <e p="Hubs" t="Include">
           <e p="OrderHub.cs" t="Include" />
         </e>
@@ -109,6 +112,14 @@
           <e p="20201213124720_InitialCreate.Designer.cs" t="Include" />
           <e p="20201213130810_deletedUniqueConstraintPainting.cs" t="Include" />
           <e p="20201213130810_deletedUniqueConstraintPainting.Designer.cs" t="Include" />
+          <e p="20201213201510_SecondCreate.cs" t="Include" />
+          <e p="20201213201510_SecondCreate.Designer.cs" t="Include" />
+          <e p="20201213202322_ThirdCreate.cs" t="Include" />
+          <e p="20201213202322_ThirdCreate.Designer.cs" t="Include" />
+          <e p="20201213205755_FourthCreate.cs" t="Include" />
+          <e p="20201213205755_FourthCreate.Designer.cs" t="Include" />
+          <e p="20201213205855_FifthCreate.cs" t="Include" />
+          <e p="20201213205855_FifthCreate.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -168,7 +179,6 @@
           <e p="Artists" t="Include">
             <e p="Biography.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
-            <e p="TestSignal.cshtml" t="Include" />
           </e>
           <e p="Error" t="Include">
             <e p="Index.cshtml" t="Include" />
@@ -210,6 +220,7 @@
             <e p="2ccc0647-9fde-4dbf-a38a-5e92ccdb67c6_Access_Denied.jpg" t="Include" />
             <e p="34829eb5-ec44-48d4-9c9d-86bc3248e726_703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
             <e p="363efb8c-1ebb-46fe-873a-2a55bd7be1e3_El_jardín_de_las_Delicias,_de_El_Bosco.jpg" t="Include" />
+            <e p="44488dea-867f-4422-bb61-9e5de83f3a45_desctop.jpg" t="Include" />
             <e p="50e0ff96-67fa-4f7e-9156-6b5df4b05b69_b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />
             <e p="5284db94-8194-4210-bc3d-92f9fd88e2af_mono_lisa.jpg" t="Include" />
             <e p="703f7dba-c9c3-442d-be2a-8581492fd907_Starry_Night.jpg" t="Include" />
@@ -218,6 +229,7 @@
             <e p="Access_Denied.jpg" t="Include" />
             <e p="ad9fadb3-09c9-46d2-9124-0c88269798cb_mono_lisa.jpg" t="Include" />
             <e p="b3f13757-c4fd-4bb9-976a-4b5cf22d1471_Access_Denied.jpg" t="Include" />
+            <e p="bb8484a6-1707-484f-ba3d-11e3067581cf_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="c0dc560e-2f72-40d4-b926-d27932555b3d_Vincent_van_Gogh__portrait.jpg" t="Include" />
             <e p="d32fec57-d15e-4694-a697-b32e5f2fc3a7_mono_lisa.jpg" t="Include" />
             <e p="e46a8ba4-1bbd-4952-b73f-fa3d10b1143a_Access_Denied.jpg" t="Include" />

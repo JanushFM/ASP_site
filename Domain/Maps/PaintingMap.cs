@@ -24,6 +24,8 @@ namespace Domain.Maps
                     Id = 1,
                     Name = "Mona Lisa",
                     ImageName = "mono_lisa.jpg",
+                    ThumbnailUri = "https://janushblobaccount.blob.core.windows.net/thumbnails/mono_lisa.jpg",
+                    ImageUri = "https://janushblobaccount.blob.core.windows.net/images/mono_lisa.jpg",
                     Price = 1465,
                     NumberAvailable = 10,
                     ArtistId = 2,
@@ -33,6 +35,8 @@ namespace Domain.Maps
                 {
                     Id = 2,
                     Name = "Starry Night",
+                    ThumbnailUri = "https://janushblobaccount.blob.core.windows.net/thumbnails/Starry_Night.jpg",
+                    ImageUri = "https://janushblobaccount.blob.core.windows.net/images/Starry_Night.jpg",
                     ImageName = "Starry_Night.jpg",
                     Price = 4656,
                     NumberAvailable = 6,

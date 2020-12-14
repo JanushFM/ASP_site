@@ -12,10 +12,10 @@ namespace WebApplication.ViewModels
         public string Name { get; set; }
         
         public Description Description { get; set; }
-
-        [Required(ErrorMessage = "Please choose  image")]  
-        [Display(Name = "Picture")]
+        
         public IFormFile Image { get; set; }
+
+        public string PrevImageName { get; set; }
 
         public string Quote { get; set; }
     }

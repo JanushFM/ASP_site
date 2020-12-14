@@ -96,6 +96,9 @@ namespace WebApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUri")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -103,6 +106,9 @@ namespace WebApplication.Migrations
 
                     b.Property<string>("Quote")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ThumbnailUri")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -178,76 +184,6 @@ namespace WebApplication.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Movie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(30);
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Rating")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(5);
-
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(60);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Movie");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Genre = "Romantic Comedy",
-                            Price = 7.99m,
-                            Rating = "R",
-                            ReleaseDate = new DateTime(1989, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "When Harry Met Sally"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Genre = "Comedy",
-                            Price = 8.99m,
-                            Rating = "R",
-                            ReleaseDate = new DateTime(1984, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Ghostbusters "
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Genre = "Comedy",
-                            Price = 9.99m,
-                            Rating = "R",
-                            ReleaseDate = new DateTime(1986, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Ghostbusters 2"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Genre = "Western",
-                            Price = 3.99m,
-                            Rating = "R",
-                            ReleaseDate = new DateTime(1959, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Rio Bravo"
-                        });
-                });
-
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -300,6 +236,9 @@ namespace WebApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUri")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -310,6 +249,9 @@ namespace WebApplication.Migrations
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ThumbnailUri")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

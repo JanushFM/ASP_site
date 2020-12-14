@@ -17,6 +17,8 @@ namespace Domain.Entities
         public List<Painting> Paintings { get; set; }
 
         public string ImageName { get; set; }
+        public string ImageUri { get; set; }
+        public string ThumbnailUri { get; set; }
 
         public string Quote { get; set; }
     }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
 using Persistence.Repositories;
 using WebApplication.EmailSender;
+using WebApplication.Helpers;
 using WebApplication.Hubs;
 
 namespace WebApplication
@@ -44,7 +45,8 @@ namespace WebApplication
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
             
-
+            services.Configure<AzureStorageConfig>(Configuration.GetSection(nameof(AzureStorageConfig)));
+            
             services.AddAuthentication().
                 AddGoogle(options =>
                 {
