@@ -6,6 +6,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
@@ -29,9 +30,9 @@ namespace WebApplication.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult ListUsers()
+        public async Task<IActionResult> ListUsers()
         {
-            var users = _userManager.Users;
+            var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
 
@@ -73,9 +74,9 @@ namespace WebApplication.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult ListRoles()
+        public async Task<IActionResult> ListRoles()
         {
-            var roles = _roleManager.Roles;
+            var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
         }
 
@@ -100,7 +101,7 @@ namespace WebApplication.Controllers
             };
 
             // Retrieve all the Users
-            foreach (var user in _userManager.Users)
+            foreach (var user in await _userManager.Users.ToListAsync())
             {
              
                 if (await _userManager.IsInRoleAsync(user, role.Name))
@@ -110,38 +111,6 @@ namespace WebApplication.Controllers
             }
 
             return View(model);
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public async Task<IActionResult> EditRole(EditRoleViewModel model)
-        {
-            var role = await _roleManager.FindByIdAsync(model.Id);
-
-            if (role == null)
-            {
-                ViewData["ErrorMessage"] = $"Role with Id = {model.Id} cannot be found";
-                return View("NotFound");
-            }
-            else
-            {
-                role.Name = model.RoleName;
-
-                // Update the Role using UpdateAsync
-                var result = await _roleManager.UpdateAsync(role);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("ListRoles");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-                return View(model);
-            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -160,7 +129,7 @@ namespace WebApplication.Controllers
 
             var model = new List<UserRoleViewModel>();
 
-            foreach (var user in _userManager.Users)
+            foreach (var user in await _userManager.Users.ToListAsync())
             {
                 var userRoleViewModel = new UserRoleViewModel
                 {
@@ -246,6 +215,7 @@ namespace WebApplication.Controllers
                 Email = user.Email,
                 UserName = user.UserName,
                 Address = user.Address,
+                PhoneNumber = user.PhoneNumber,
                 Roles = userRoles
             };
 
@@ -267,7 +237,8 @@ namespace WebApplication.Controllers
             user.Email = model.Email;
             user.UserName = model.UserName;
             user.Address = model.Address;
-
+            user.PhoneNumber = model.PhoneNumber;
+            
             var result = await _userManager.UpdateAsync(user);
 
             if (result.Succeeded)
@@ -357,7 +328,7 @@ namespace WebApplication.Controllers
 
             var model = new List<UserRolesViewModel>();
 
-            foreach (var role in _roleManager.Roles)
+            foreach (var role in await _roleManager.Roles.ToListAsync())
             {
                 var userRolesViewModel = new UserRolesViewModel
                 {

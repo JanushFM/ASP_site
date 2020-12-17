@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net.Mime;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Domain.Maps

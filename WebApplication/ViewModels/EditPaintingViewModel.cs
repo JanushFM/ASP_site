@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebApplication.ViewModels
 {
-    public class EditPaintingViewModel
+    public class EditPaintingViewModel : BaseEntity
     {
-        public int Id { get; set; }
-        
         [StringLength(120, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
@@ -17,7 +15,7 @@ namespace WebApplication.ViewModels
         
         public string PrevImageName { get; set; }
         
-        public Description Description { get; set; }
+        public DescriptionViewModel Description { get; set; }
         
         public int Price { get; set; }
 

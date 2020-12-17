@@ -1,10 +1,7 @@
-﻿@model Domain.Entities.Order
+﻿@model WebApplication.Controllers.UpdOrderViewModel
 
 @{
     ViewData["Title"] = "Update Order";
-}
-@{
-    var maxAmount = Model.Painting.NumberAvailable + Model.Amount;
 }
 
 <div class="row">
@@ -17,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" max="@maxAmount" min = "1" class="form-control" />
+                <input asp-for="Amount" max="@Model.MaxAmount" min = "1" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="ShippingAddress" class="control-label"></label>

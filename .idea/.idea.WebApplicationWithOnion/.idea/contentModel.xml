@@ -14,7 +14,6 @@
             <e p="IArtistRepository.cs" t="Include" />
             <e p="IDescriptionRepository.cs" t="Include" />
             <e p="IGenericRepository.cs" t="Include" />
-            <e p="IMovieRepository.cs" t="Include" />
             <e p="IOrderRepository.cs" t="Include" />
             <e p="IPaintingRepository.cs" t="Include" />
           </e>
@@ -36,7 +35,6 @@
           <e p="Artist.cs" t="Include" />
           <e p="BaseEntity.cs" t="Include" />
           <e p="Description.cs" t="Include" />
-          <e p="Movie.cs" t="Include" />
           <e p="Order.cs" t="Include" />
           <e p="Painting.cs" t="Include" />
         </e>
@@ -108,6 +106,7 @@
           <e p="PaintingsController.cs" t="Include" />
           <e p="ShopItemsController.cs" t="Include" />
           <e p="ShoppingListController.cs" t="Include" />
+          <e p="UpdOrderViewModel.cs" t="Include" />
         </e>
         <e p="DataInitializer.cs" t="Include" />
         <e p="Hubs" t="Include">
@@ -124,8 +123,6 @@
         <e p="Models" t="Include">
           <e p="ErrorViewModel.cs" t="Include" />
         </e>
-        <e p="MvcMovie.db" t="Include" />
-        <e p="MvcMovie.dbs" t="Include" />
         <e p="nlog.config" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -152,6 +149,7 @@
           <e p="AccountSettingsViewModel.cs" t="Include" />
           <e p="CreatePaintingViewModel.cs" t="Include" />
           <e p="CreateRoleViewModel.cs" t="Include" />
+          <e p="DescriptionViewModel.cs" t="Include" />
           <e p="EditArtistViewModel.cs" t="Include" />
           <e p="EditPaintingViewModel.cs" t="Include" />
           <e p="EditRoleViewModel.cs" t="Include" />

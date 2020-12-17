@@ -5,10 +5,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebApplication.ViewModels
 {
-    public class CreatePaintingViewModel
+    public class CreatePaintingViewModel: BaseEntity
     {
-        public int Id { get; set; }
-        
         [StringLength(120, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
@@ -17,7 +15,7 @@ namespace WebApplication.ViewModels
         [Display(Name = "Picture")]
         public IFormFile Image { get; set; }
         
-        public Description Description { get; set; }
+        public DescriptionViewModel Description { get; set; }
         
         [Required]
         public int Price { get; set; }

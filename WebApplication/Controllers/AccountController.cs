@@ -73,7 +73,7 @@ namespace WebApplication.Controllers
                     
                    
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("index", "Artists");
+                    return RedirectToAction("Settings", "Account");
                 }
 
                 
@@ -119,10 +119,14 @@ namespace WebApplication.Controllers
                 {
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
+                        if (returnUrl.Contains("BuyPainting"))
+                        {
+                            return RedirectPreserveMethod(returnUrl); // redirect to POST method
+                        }
                         return Redirect(returnUrl);
                     }
 
-                    return RedirectToAction("index", "Artists");
+                    return RedirectToAction("Settings", "Account");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");

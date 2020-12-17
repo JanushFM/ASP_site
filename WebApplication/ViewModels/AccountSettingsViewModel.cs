@@ -11,6 +11,7 @@ namespace WebApplication.ViewModels
         public string Address { get; set; }
         
         [Phone] 
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
     }
 }

@@ -5,8 +5,9 @@
 }
 @if (Model.Any())
 {
+    <h1>Paintings</h1>
     <p>
-        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreatePainting">Create New</a>
+        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreatePainting">Create a new one</a>
     </p>
     <table class="table">
         <thead>
@@ -22,6 +23,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberAvailable)
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
             </th>
             <th></th>
         </tr>

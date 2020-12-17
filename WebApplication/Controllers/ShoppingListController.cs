@@ -73,12 +73,28 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "This page is unavailable.";
                 return View("NotFound");
             }
+            
+            if (order.IsConfirmedByUser)
+            {
+                ViewData["ErrorMessage"] = "You have already confirmed this order. Our assistant will call you soon !";
+                return View("NotFound");
+            }
 
-            return View(order);
+            var orderViewModel = new UpdOrderViewModel
+            {
+                Id = order.Id,
+                Amount = order.Amount,
+                Painting = order.Painting,
+                PhoneNumber = order.PhoneNumber,
+                ShippingAddress = order.ShippingAddress,
+                MaxAmount = order.Painting.NumberAvailable + order.Amount
+            };
+
+            return View(orderViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdOrder(Order updatedOrder)
+        public async Task<IActionResult> UpdOrder(UpdOrderViewModel updatedOrder)
         {
             var user = await _userManager.GetUserAsync(User);
             var order = await _orderRepository.GetById(user.Id, updatedOrder.Id);
@@ -88,7 +104,11 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "This page is unavailable.";
                 return View("NotFound");
             }
-
+            if (order.IsConfirmedByUser)
+            {
+                ViewData["ErrorMessage"] = "You have already confirmed this order. Our assistant will call you soon !";
+                return View("NotFound");
+            }
 
             await _paintingRepository.UpdNumPaintings(order.PaintingId,
                 updatedOrder.Amount - order.Amount);
@@ -113,6 +133,12 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "This page is unavailable.";
                 return View("NotFound");
             }
+            
+            if (order.IsConfirmedByUser)
+            {
+                ViewData["ErrorMessage"] = "You have already confirmed this order. Our assistant will call you soon !";
+                return View("NotFound");
+            }
 
             return View(order);
         }
@@ -128,7 +154,11 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = "This page is unavailable.";
                 return View("NotFound");
             }
-
+            if (order.IsConfirmedByUser)
+            {
+                ViewData["ErrorMessage"] = "You have already confirmed this order. Our assistant will call you soon !";
+                return View("NotFound");
+            }
             await _paintingRepository.UpdNumPaintings(order.PaintingId, -order.Amount);
             await _orderRepository.Delete(order);
             return RedirectToAction("Orders");

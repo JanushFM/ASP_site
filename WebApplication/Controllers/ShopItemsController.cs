@@ -42,7 +42,7 @@ namespace WebApplication.Controllers
             var newPainting = new CreatePaintingViewModel
             {
                 Artists = await _artistRepository.GetAll(),
-                Description = new Description()
+                Description = new DescriptionViewModel()
             };
 
             return View(newPainting);
@@ -56,20 +56,24 @@ namespace WebApplication.Controllers
                 var newPainting = new Painting
                 {
                     ArtistId = newPaintingVM.SelectedArtistId,
-                    Description = newPaintingVM.Description,
+                    Description = new Description
+                    {
+                        BigDescription = newPaintingVM.Description.BigDescription,
+                        SmallDescription = newPaintingVM.Description.SmallDescription
+                    },
                     Name = newPaintingVM.Name,
                     Price = newPaintingVM.Price,
                     NumberAvailable = newPaintingVM.NumberAvailable,
                 };
-                
+
                 var blobUriResults = await LoadImageToAzure(newPaintingVM.Image);
                 if (blobUriResults != null)
                 {
-                    newPainting.ImageName = newPaintingVM.Image.Name;
+                    newPainting.ImageName = newPaintingVM.Image.FileName;
                     newPainting.ImageUri = blobUriResults.Item1;
                     newPainting.ThumbnailUri = blobUriResults.Item2;
                 }
-                
+
                 await _paintingRepository.Add(newPainting);
                 return RedirectToAction("ManagePaintings");
             }
@@ -87,7 +91,11 @@ namespace WebApplication.Controllers
             var editPaintingViewModel = new EditPaintingViewModel
             {
                 Id = painting.Id,
-                Description = painting.Description,
+                Description = new DescriptionViewModel
+                {
+                    BigDescription = painting.Description.BigDescription,
+                    SmallDescription = painting.Description.SmallDescription
+                },
                 Name = painting.Name,
                 NumberAvailable = painting.NumberAvailable,
                 Price = painting.Price,
@@ -108,13 +116,17 @@ namespace WebApplication.Controllers
                 painting.Description.BigDescription = updPaintingVM.Description.BigDescription;
                 painting.Description.SmallDescription = updPaintingVM.Description.SmallDescription;
 
-                var blobUriResults = await LoadImageToAzure(updPaintingVM.Image);
-                if (blobUriResults != null)
+                if (updPaintingVM.Image != null)
                 {
-                    painting.ImageName = updPaintingVM.Image.Name;
-                    painting.ImageUri = blobUriResults.Item1;
-                    painting.ThumbnailUri = blobUriResults.Item2;
+                    var blobUriResults = await LoadImageToAzure(updPaintingVM.Image);
+                    if (blobUriResults != null)
+                    {
+                        painting.ImageName = updPaintingVM.Image.Name;
+                        painting.ImageUri = blobUriResults.Item1;
+                        painting.ThumbnailUri = blobUriResults.Item2;
+                    }
                 }
+
 
                 await _paintingRepository.Update(painting);
                 return RedirectToAction("ManagePaintings");
@@ -122,7 +134,7 @@ namespace WebApplication.Controllers
 
             return View(updPaintingVM);
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> DeletePainting(int id)
@@ -142,9 +154,9 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult CreateArtist()
         {
-            var artistVM = new EditArtistViewModel()
+            var artistVM = new EditArtistViewModel
             {
-                Description = new Description(),
+                Description = new DescriptionViewModel()
             };
 
             return View(artistVM);
@@ -159,16 +171,22 @@ namespace WebApplication.Controllers
                 {
                     Name = newArtistVM.Name,
                     Quote = newArtistVM.Quote,
-                    Description = newArtistVM.Description,
+                    Description = new Description
+                    {
+                        BigDescription = newArtistVM.Description.BigDescription,
+                        SmallDescription = newArtistVM.Description.SmallDescription
+                    }
                 };
-                
+
+
                 var blobUriResults = await LoadImageToAzure(newArtistVM.Image);
                 if (blobUriResults != null)
                 {
-                    newArtist.ImageName = newArtistVM.Image.Name;
+                    newArtist.ImageName = newArtistVM.Image.FileName;
                     newArtist.ImageUri = blobUriResults.Item1;
                     newArtist.ThumbnailUri = blobUriResults.Item2;
                 }
+
 
                 await _artistRepository.Add(newArtist);
                 return RedirectToAction("ManageArtists");
@@ -185,8 +203,13 @@ namespace WebApplication.Controllers
             {
                 Id = artist.Id,
                 Name = artist.Name,
-                Description = artist.Description,
                 Quote = artist.Quote,
+                Description = new DescriptionViewModel
+                {
+                    SmallDescription = artist.Description.SmallDescription,
+                    BigDescription = artist.Description.BigDescription
+                },
+                PrevImageName = artist.ImageName
             };
             return View(editArtistViewModel);
         }
@@ -202,19 +225,23 @@ namespace WebApplication.Controllers
                 artist.Description.BigDescription = updArtistVM.Description.BigDescription;
                 artist.Description.SmallDescription = updArtistVM.Description.SmallDescription;
 
-                
-                var blobUriResults = await LoadImageToAzure(updArtistVM.Image);
-                if (blobUriResults != null)
+
+                if (updArtistVM.Image != null)
                 {
-                    artist.ImageName = updArtistVM.Image.Name;
-                    artist.ImageUri = blobUriResults.Item1;
-                    artist.ThumbnailUri = blobUriResults.Item2;
+                    var blobUriResults = await LoadImageToAzure(updArtistVM.Image);
+                    if (blobUriResults != null)
+                    {
+                        artist.ImageName = updArtistVM.Image.Name;
+                        artist.ImageUri = blobUriResults.Item1;
+                        artist.ThumbnailUri = blobUriResults.Item2;
+                    }
                 }
                 
                 await _artistRepository.Update(artist);
                 return RedirectToAction("ManageArtists");
+                
             }
-            
+
             return View(updArtistVM);
         }
 
@@ -232,6 +259,7 @@ namespace WebApplication.Controllers
                 await using Stream stream = file.OpenReadStream();
                 return await StorageHelper.MyUploadFileToStorage(stream, file.FileName, _storageConfig);
             }
+
             return null;
         }
     }

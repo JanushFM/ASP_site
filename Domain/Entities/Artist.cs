@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace Domain.Entities
 {
     public class Artist : BaseEntity
     {
-        [StringLength(120, MinimumLength = 3)]
-        [Required]
         public string Name { get; set; }
         
         public int DescriptionId { get; set; }

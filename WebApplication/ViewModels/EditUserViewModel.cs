@@ -21,6 +21,9 @@ namespace WebApplication.ViewModels
         public string Email { get; set; }
 
         public string Address { get; set; }
+        
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
 
         public IList<string> Roles { get; set; }
     }
