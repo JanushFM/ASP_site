@@ -189,6 +189,7 @@
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Paintings" t="Include">
+            <e p="Description.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">

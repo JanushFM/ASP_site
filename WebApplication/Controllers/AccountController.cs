@@ -53,7 +53,7 @@ namespace WebApplication.Controllers
                     
                     if (_userManager.Users.Count() == 1)
                     {
-                        MakeUserAdmin(user);
+                        await MakeUserAdmin(user);
                     }
                     else
                     {
@@ -125,7 +125,13 @@ namespace WebApplication.Controllers
                         }
                         return Redirect(returnUrl);
                     }
-
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    var role = await _userManager.GetRolesAsync(user);
+                    
+                    if (role[0].Equals("Admin"))
+                    {
+                        return RedirectToAction("Index", "Artists");
+                    }
                     return RedirectToAction("Settings", "Account");
                 }
 
@@ -195,6 +201,11 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
+            if (returnUrl.Contains("BuyPainting")) // because it contains post method I don't the user to be redirected 
+            {
+                returnUrl = null;
+            }
+            
             var redirectUrl = Url.Action
             (
                 nameof(ExternalLoginCallback),
@@ -271,7 +282,7 @@ namespace WebApplication.Controllers
                         await _userManager.CreateAsync(user);
                         if (_userManager.Users.Count() == 1)
                         {
-                            MakeUserAdmin(user);
+                            await MakeUserAdmin(user);
                         }
                         else
                         {
@@ -328,7 +339,7 @@ namespace WebApplication.Controllers
             return View("Error");
         }
 
-        public async void MakeUserAdmin(AppUser user)
+        public async Task MakeUserAdmin(AppUser user)
         {
             await _userManager.AddToRoleAsync(user, "Admin");
         }

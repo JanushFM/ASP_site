@@ -11,6 +11,7 @@ namespace Application.Interfaces.IRepositories
         public Task<int> IsPaintingInOrder(string userId, int paintingId);
         public Task ConfirmOrders(IEnumerable<Order> ordersToConfirm);
         public Task<bool> IsPhoneNumberAssignedInOrders(string userId);
+        public Task<List<Order>> GetOrdersWithUserId(string userId);
     }
     
 }

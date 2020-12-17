@@ -79,14 +79,30 @@ namespace WebApplication.Controllers
             }
             else
             {
-                await _orderRepository.Add(GetOrder(user, id.Value));
+                await _orderRepository.Add(CreateNewOrder(user, id.Value));
             }
             await _paintingRepository.UpdNumPaintings(id.Value, 1);
 
             return RedirectToAction("orders", "ShoppingList");
         }
 
-        public Order GetOrder(AppUser user, int paintingId)
+        public async Task<IActionResult> Description(int? paintingId)
+        {
+            if (paintingId == null)
+            {
+                return NotFound();
+            }
+
+            var painting = await _paintingRepository.GetById(paintingId.Value);
+            if (painting == null)
+            {
+                return NotFound();
+            }
+
+            return View(painting);
+        }
+
+        public Order CreateNewOrder(AppUser user, int paintingId)
         {
             return new Order
             {

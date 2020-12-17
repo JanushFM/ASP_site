@@ -39,8 +39,7 @@ namespace Persistence.Repositories
 
         public async Task<int> IsPaintingInOrder(string userId, int paintingId)
         {
-            var orders = await _context.Set<Order>()
-                .Where(e => e.AppUserId == userId).ToListAsync();
+            var orders = await GetOrdersWithUserId(userId);
 
             return (from order in orders where order.PaintingId == paintingId select order.Id).FirstOrDefault();
         }
@@ -56,9 +55,14 @@ namespace Persistence.Repositories
 
         public async Task<bool> IsPhoneNumberAssignedInOrders(string userId)
         {
-            var orders = await _context.Set<Order>()
-                .Where(e => e.AppUserId == userId).ToListAsync();
+            var orders = await GetOrdersWithUserId(userId);
             return orders.All(order => order.PhoneNumber != null && !order.PhoneNumber.Equals(""));
+        }
+
+        public async Task<List<Order>> GetOrdersWithUserId(string userId)
+        {
+            return await _context.Set<Order>()
+                .Where(e => e.AppUserId == userId).ToListAsync(); // returns List<Order> with count 0
         }
     }
 }

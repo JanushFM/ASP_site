@@ -37,6 +37,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> Orders()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             var totalPrice = await _orderRepository.LoadOrdersWithArtistId(user.Id);
 
             ShoppingListViewModel shoppingList;
@@ -66,7 +71,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> UpdOrder(int orderId)
         {
             var user = await _userManager.GetUserAsync(User);
-
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             var order = await _orderRepository.GetById(user.Id, orderId);
             if (order == null)
             {
@@ -97,6 +106,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> UpdOrder(UpdOrderViewModel updatedOrder)
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             var order = await _orderRepository.GetById(user.Id, updatedOrder.Id);
 
             if (order == null)
@@ -126,7 +140,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> DelOrder(int orderId)
         {
             var user = await _userManager.GetUserAsync(User);
-
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             var order = await _orderRepository.GetById(user.Id, orderId);
             if (order == null)
             {
@@ -147,7 +165,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> DelOrder(Order orderToDel)
         {
             var user = await _userManager.GetUserAsync(User);
-
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             var order = await _orderRepository.GetById(user.Id, orderToDel.Id);
             if (order == null)
             {
@@ -168,6 +190,11 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> ConfirmOrders()
         {
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                ViewData["ErrorMessage"] = $"User cannot be found";
+                return View("NotFound");
+            }
             await _orderRepository.LoadOrdersWithArtistId(user.Id);
 
             if (!await _orderRepository.IsPhoneNumberAssignedInOrders(user.Id))
