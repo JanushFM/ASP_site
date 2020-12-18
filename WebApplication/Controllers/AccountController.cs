@@ -36,7 +36,6 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-               
                 var user = new AppUser
                 {
                     UserName = model.Email,
@@ -46,11 +45,9 @@ namespace WebApplication.Controllers
                 // Store user data in AspNetUsers database table
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                
+
                 if (result.Succeeded)
                 {
-                   
-                    
                     if (_userManager.Users.Count() == 1)
                     {
                         await MakeUserAdmin(user);
@@ -59,24 +56,24 @@ namespace WebApplication.Controllers
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                     }
-                    
+
                     var confirmationLink = GetConfirmationLink(user);
-                    
-                    
+
+
                     await _mailSender.SendEmailAsync(model.Email, "Confirm your account",
                         $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
-                    
+
                     if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         return RedirectToAction("ListUsers", "Administration");
                     }
-                    
-                   
+
+
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Settings", "Account");
                 }
 
-                
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -123,15 +120,18 @@ namespace WebApplication.Controllers
                         {
                             return RedirectPreserveMethod(returnUrl); // redirect to POST method
                         }
+
                         return Redirect(returnUrl);
                     }
+
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var role = await _userManager.GetRolesAsync(user);
-                    
+
                     if (role[0].Equals("Admin"))
                     {
                         return RedirectToAction("Index", "Artists");
                     }
+
                     return RedirectToAction("Settings", "Account");
                 }
 
@@ -151,7 +151,7 @@ namespace WebApplication.Controllers
                 ViewData["ErrorMessage"] = $"User cannot be found";
                 return View("NotFound");
             }
-            
+
             AccountSettingsViewModel accountSettingsViewModel = new AccountSettingsViewModel
             {
                 Email = user.Email,
@@ -174,18 +174,17 @@ namespace WebApplication.Controllers
             user.Email = accountSettings.Email;
             user.Address = accountSettings.Address;
             user.PhoneNumber = accountSettings.PhoneNumber;
-            
+
             var result = await _userManager.UpdateAsync(user);
-            
+
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error.Description);
             }
-            
+
             return View(accountSettings);
-
-
         }
+
         [HttpGet]
         public IActionResult AccessDenied()
         {
@@ -201,11 +200,12 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            if (returnUrl.Contains("BuyPainting")) // because it contains post method I don't the user to be redirected 
+            if (returnUrl != null && returnUrl.Contains("BuyPainting")
+            ) // because it contains post method I don't the user to be redirected 
             {
                 returnUrl = null;
             }
-            
+
             var redirectUrl = Url.Action
             (
                 nameof(ExternalLoginCallback),
@@ -263,12 +263,10 @@ namespace WebApplication.Controllers
             // a local account
             else
             {
-                
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
                 if (email != null)
                 {
-                    
                     var user = await _userManager.FindByEmailAsync(email);
 
                     if (user == null)
@@ -278,7 +276,7 @@ namespace WebApplication.Controllers
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email)
                         };
-                        
+
                         await _userManager.CreateAsync(user);
                         if (_userManager.Users.Count() == 1)
                         {
@@ -288,21 +286,22 @@ namespace WebApplication.Controllers
                         {
                             await _userManager.AddToRoleAsync(user, "User");
                         }
+
                         var confirmationLink = GetConfirmationLink(user);
-                        
-                        
-                    
+
+
                         await _mailSender.SendEmailAsync(user.Email, "Confirm your account",
                             $"Welcome to my painting site ! \nConfirm your account by clicking the link below:\n <a href='{confirmationLink.Result}'>link</a>");
                     }
 
-                    
+
                     await _userManager.AddLoginAsync(user, info);
-                    
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect(returnUrl);
                 }
+
                 return View("Error");
             }
         }
@@ -311,10 +310,10 @@ namespace WebApplication.Controllers
         {
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             return Url.Action("ConfirmEmail", "Account",
-                new { userId = user.Id, token = token }, Request.Scheme);
+                new {userId = user.Id, token = token}, Request.Scheme);
         }
-        
-        
+
+
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
             if (userId == null || token == null)
@@ -343,6 +342,5 @@ namespace WebApplication.Controllers
         {
             await _userManager.AddToRoleAsync(user, "Admin");
         }
-        
     }
 }

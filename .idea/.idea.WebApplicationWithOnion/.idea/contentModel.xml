@@ -118,6 +118,8 @@
         <e p="Migrations" t="Include">
           <e p="20201214210525_InitialCreate.cs" t="Include" />
           <e p="20201214210525_InitialCreate.Designer.cs" t="Include" />
+          <e p="20201218141346_deletesOrdersOnUserDelete.cs" t="Include" />
+          <e p="20201218141346_deletesOrdersOnUserDelete.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
