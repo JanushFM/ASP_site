@@ -28,7 +28,7 @@ namespace Persistence.Repositories
             var orders = await _context.Set<Order>().Include(e => e.Painting)
                 .Where(e => e.AppUserId == userId).ToListAsync();
 
-            return orders.Sum(order => order.Painting.Price);
+            return orders.Sum(order => order.Painting.Price * order.Amount);
         }
 
         public async Task<Order> GetById(string userId, int orderId)

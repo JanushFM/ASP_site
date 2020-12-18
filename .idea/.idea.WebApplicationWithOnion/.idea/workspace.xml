@@ -118,7 +118,6 @@
         <option value="$PROJECT_DIR$/WebApplication/Views/Administration/EditRole.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Account/Login.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Controllers/AdministrationController.cs" />
-        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
         <option value="$PROJECT_DIR$/Domain/Entities/Painting.cs" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Artists/Biography.cshtml" />
         <option value="$PROJECT_DIR$/WebApplication/Views/Paintings/Index.cshtml" />
@@ -127,6 +126,7 @@
         <option value="$PROJECT_DIR$/WebApplication/Controllers/PaintingsController.cs" />
         <option value="$PROJECT_DIR$/Persistence/Repositories/OrderRepository.cs" />
         <option value="$PROJECT_DIR$/Application/Interfaces/IRepositories/IOrderRepository.cs" />
+        <option value="$PROJECT_DIR$/WebApplication/Controllers/AccountController.cs" />
       </list>
     </option>
   </component>
@@ -258,6 +258,9 @@
       <workItem from="1608233117614" duration="1640000" />
       <workItem from="1608300150087" duration="380000" />
       <workItem from="1608303218201" duration="633000" />
+      <workItem from="1608306193156" duration="590000" />
+      <workItem from="1608312162079" duration="761000" />
+      <workItem from="1608315689538" duration="353000" />
     </task>
     <servers />
   </component>
@@ -422,10 +425,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1607531883864" />
-    <state x="675" y="184" width="793" height="624" key="find.popup" timestamp="1608230402627">
+    <state x="675" y="184" width="793" height="624" key="find.popup" timestamp="1608306445124">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="675" y="184" width="793" height="624" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608230402627" />
+    <state x="675" y="184" width="793" height="624" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608306445124" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1607616369281">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
