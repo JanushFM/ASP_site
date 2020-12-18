@@ -106,8 +106,7 @@ namespace WebApplication.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(120)")
-                        .HasMaxLength(120);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Quote")
                         .IsRequired()
@@ -155,13 +154,11 @@ namespace WebApplication.Migrations
 
                     b.Property<string>("BigDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(4000)")
-                        .HasMaxLength(4000);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SmallDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(600)")
-                        .HasMaxLength(600);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -253,8 +250,7 @@ namespace WebApplication.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(120)")
-                        .HasMaxLength(120);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberAvailable")
                         .HasColumnType("int");
@@ -445,7 +441,8 @@ namespace WebApplication.Migrations
                 {
                     b.HasOne("Domain.Entities.AppUser", null)
                         .WithMany("Orders")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Domain.Entities.Painting", "Painting")
                         .WithMany()
