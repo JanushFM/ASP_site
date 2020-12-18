@@ -127,7 +127,7 @@ namespace WebApplication.Controllers
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var role = await _userManager.GetRolesAsync(user);
 
-                    if (role[0].Equals("Admin"))
+                    if (role[0].Equals("Admin") || role[0].Equals("Sailor"))
                     {
                         return RedirectToAction("Index", "Artists");
                     }
